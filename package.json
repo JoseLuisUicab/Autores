@@ -1,0 +1,20 @@
+{
+  "name": "autores",
+  "version": "1.0.0",
+  "description": "Servicio Social",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoseLuisUicab/Autores.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoseLuisUicab/Autores/issues"
+  },
+  "homepage": "https://github.com/JoseLuisUicab/Autores#readme"
+}
