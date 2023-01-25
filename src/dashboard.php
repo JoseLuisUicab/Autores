@@ -12,12 +12,16 @@
 
 <body>
   <section class="admin">
-    <div class="container border">
-      <div class="card">
+    <div class="container border d-flex justify-content-center">
+      <div class="card w-50">
         <h5 class="card-header">Importar excel o csv</h5>
         <div class="card-body">
           <div class="col-lg-10">
-            <input type="file">
+            <input type="file" id="txt_archivo" class="form-control" accept=".csv,.xlsx,.xls">
+          </div>
+          &nbsp; &nbsp; &nbsp;
+          <div class="col-lg-4">
+            <button class="btn btn-primary">cargar excel</button>
           </div>
         </div>
       </div>
