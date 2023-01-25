@@ -10,3 +10,28 @@ $('input[type="file"]').on('change', function () {
     }
   }
 });
+/* fin code  */
+
+function Cargarexcel() {
+  var excel = $("txt_archivo").val() 
+  if (excel === "") {
+    Swal.fire("Mensaje de Advertencia", "Seleccionar un rachivo excel", "warning")
+    return;
+  }
+  var formdata = new FormData();
+  var file = $("#txt_archivo")[0].file[0];
+  formdata.append("archivoexcel",file);
+  $.ajax({
+    url: "importa_excel_ajax.php",
+    type: "POST",
+    data: formdata,
+    contentType: false,
+    processData: false,
+    success: function (resp) { 
+
+    }
+    
+
+  
+  })
+}

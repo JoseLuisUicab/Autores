@@ -8,8 +8,87 @@
 *::after {
   box-sizing: border-box;
 }
+<<<<<<< HEAD
 .ancho {
   max-width:1200px;
   margin:auto;
   border:1px solid red;
 }
+=======
+body{
+  font-family: helvetica;
+  font-size: 16px;
+  line-height: 24px;
+  color: #333;
+ }
+
+ .borde{
+  border: 1px black solid;
+  }
+  .ancho{
+    max-width: 1200px;
+    margin: auto;
+    border: 1px red solid ;
+   }
+
+/* ----------LOGIN----------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------INDEX----------------------*/
+.Inicio{
+  background-image: url();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------MENU----------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------DASHBOARD----------------------*/
+>>>>>>> aef1d1c1c1127971cfe9ca886ebb9bd085bd7df3
