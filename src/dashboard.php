@@ -11,7 +11,18 @@
 </head>
 
 <body>
-  <button class="btn btn-primary">dssss</button>
+  <section class="admin">
+    <div class="container border">
+      <div class="card">
+        <h5 class="card-header">Importar excel o csv</h5>
+        <div class="card-body">
+          <div class="col-lg-10">
+            <input type="file">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </body>
 
