@@ -8,16 +8,26 @@
   },
   "repository": {
     "type": "git",
+<<<<<<< HEAD
     "url": "git+https://github.com/WilliamGongora/Autores.git"
+=======
+    "url": "git+https://github.com/JoseLuisUicab/Autores.git"
+>>>>>>> e593d623f02cc907a433cadd6490bad855969438
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
+<<<<<<< HEAD
     "url": "https://github.com/WilliamGongora/Autores/issues"
   },
   "homepage": "https://github.com/WilliamGongora/Autores#readme",
   "dependencies": {
     "bootstrap": "^5.3.0-alpha1"
   }
+=======
+    "url": "https://github.com/JoseLuisUicab/Autores/issues"
+  },
+  "homepage": "https://github.com/JoseLuisUicab/Autores#readme"
+>>>>>>> e593d623f02cc907a433cadd6490bad855969438
 }
