@@ -53,8 +53,71 @@ body{
 
 /* ----------INDEX----------------------*/
 .Inicio{
-  background-image: url();
+  background-image: url(../Imagenes/tecnm.jpg);
+  width: 100%;
+  height: 90vh;
+  background-repeat: no-repeat;
+  border: 2px solid red;
+  background-size: cover;
+  background-attachment: fixed;
 }
+.Parte1{
+  width: 1200px;
+  height: 100vh;
+  border: 2px solid green;
+  margin: auto;
+}
+
+.menu{
+  border: 2px solid black;
+  width: 1200px;
+  height: 10vh;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+.logo{
+  border: 2px solid blue;
+  width: 100px;
+  height: 10vh;
+}
+.logo img{
+  width: 100%;
+  height: 100%;
+}
+.icono{
+  color: #800101;
+  font-size: 40px;
+  border: 2px solid red;
+  margin-right: 10px;
+}
+/*Icono arriba*/
+#button-up{
+  width: 60px;
+  height: 60px;
+  background-color: var(--mostaza);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 50%;
+  font-size: 30px;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  cursor: pointer;
+  border: 4px solid transparent;
+  transform: scale(0);
+  transition: all 300ms ease;
+  z-index: 14;
+}
+#button-up:hover{
+  transform: scale(1);
+  border-color: rgba(0, 0, 0, .2);
+} 
+/*Fin icono arriba*/
 
 
 
