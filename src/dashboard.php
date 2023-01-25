@@ -7,12 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../Css/Destock.css">
   <link rel="stylesheet" href="../src/style.css">
+  <meta http-equiv="refresh" content="1">
   <title>Document</title>
 </head>
 
 <body>
   <section class="admin">
-    <div class="container border d-flex justify-content-center">
+    <div class="ancho d-flex justify-content-center">
       <div class="card w-50">
         <h5 class="card-header">Importar excel o csv</h5>
         <div class="card-body">
@@ -27,7 +28,7 @@
       </div>
     </div>
   </section>
-
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
