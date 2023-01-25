@@ -8,3 +8,77 @@
 *::after {
   box-sizing: border-box;
 }
+body{
+  font-family: helvetica;
+  font-size: 16px;
+  line-height: 24px;
+  color: #333;
+ }
+
+ .borde{
+  border: 1px black solid;
+  }
+  .ancho{
+    max-width: 1200px;
+    margin: auto;
+    border: 1px red solid ;
+   }
+
+/* ----------LOGIN----------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------INDEX----------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------MENU----------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------DASHBOARD----------------------*/
