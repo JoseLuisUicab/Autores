@@ -8,5 +8,5 @@ $archivos = "maiaa.xlsx";
 $excel = PHPExcel_IOFactory::load($archivos);
  // cargar lla hoja de calculos 
 $excel->setActiveSheetIndex(0);
-$numfila->
+/* $numfila-> */
 ?>
