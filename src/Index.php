@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="src/style.css">
   <link rel="stylesheet" href="../Css/Destock.css">
   <script src="../Scrip/Scrip.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src='https://kit.fontawesome.com/2ee0245f3d.js' crossorigin='anonymous'></script>
   <title>Principal</title>
 </head>
@@ -22,6 +23,8 @@
     <i class="fas fa-sort-up"></i>  
     </div>
   <!-- fin boton-->
+
+
 </body>
 
 </html>
