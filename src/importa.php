@@ -1,6 +1,45 @@
 <?php
 require "../vendor/autoload.php";
 require "conexion.php";
+class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
+{
+  public function readCell($column, $row, $worksheetName = '')
+  {
+    if ($row > 1) {
+      return true;
+    }
+    return false;
+  }
+}
+
+$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+
+$inputFileName = $_FILES['excel']['tmp_name']; 
+
+/**  Identify the type of $inputFileName  **/
+$inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
+/**  Create a new Reader of the type that has been identified  **/
+$reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
+$reader->setReadFilter(new MyReadFilter());
+/**  Load $inputFileName to a Spreadsheet Object  **/
+$spreadsheet = $reader->load($inputFileName);
+$cantidad = $spreadsheet->getActiveSheet()->toArray();
+foreach ($cantidad as $row){
+  if($row[0]!=''){
+    
+   /*  $sql = "INSERT INTO integrantes(id,nombre,apellido,correo,redes,puesto,descripcion) VALUE ('$row[0]','$row[1]','$row[2]','$row[3]','$row[4]','$row[5]','$row[6]')"; */
+    $result = $mysqli->query($sql);
+  }
+}
+
+
+
+
+/* require "vendor/autoload.php";
+reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+
+require "../vendor/autoload.php";
+require "conexion.php";
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
@@ -9,7 +48,7 @@ $doc = IOFactory::load($nombreArchivo);
 
 $thojas = $doc->getSheetCount();
 
-/* for($indicehoja=0; $indicehoja<$thojas; $indicehoja++){ */
+/* for($indicehoja=0; $indicehoja<$thojas; $indicehoja++){ 
 $hactual = $doc->getSheet(0);
 $nfilas = $hactual->getHighestDataRow();
 $letra = $hactual->getHighestColumn();
@@ -27,5 +66,5 @@ for($indicehoja=2; $indicehoja<$nfilas; $indicehoja++){
 
   $sql = "INSERT INTO integrantes(id,nombre,apellido,correo,redes,puesto,descripcion) VALUE ('$valorA','$valorB','$valorC','$valorD','$valorE','$valorF','$valorG')";
    $mysqli->query($sql);
-}
+} */
 ?>
