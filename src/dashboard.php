@@ -33,8 +33,12 @@
       </div>
     </div>
 
-    <?php  ?>
+    <div class="col-lg-12" id="div_tabla"></div>
   </section>
+
+  <?php
+  include "importa.php";
+  ?>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="../Scrip/Scrip.js"></script>
 

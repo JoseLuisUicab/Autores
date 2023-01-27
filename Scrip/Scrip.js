@@ -28,10 +28,7 @@ function Cargarexcel() {
     contentType: false,
     processData: false,
     success: function (resp) {
-
+     $("#div_tabla").html(resp); 
     }
-
-
-
   })
 }
