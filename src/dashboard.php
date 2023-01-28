@@ -72,11 +72,32 @@
         var input_file_datos = $("#filedatos");
         var exp_reg = new RegExp("([a-zA-Z0-9\s_\\-.\:])+(" +
           validoex.join("|") + ")$");
-        if (!exp_reg.test(input)) {
-
+        if (!exp_reg.test(input_file_datos.val().toLowerCase())) {
+          Swal.fire({
+            position: "center",
+            icon: "warning",
+            title: "debe seleccionar archivos con extension xls. xlsx, CSV",
+            showConfirmButton: false,
+            timer: 2500
+          })
+          return false;
         }
-      }
+        var datos = new FormData($("#cargar_datos")[0]);
+        /*  $("#btnCargar").prop("disabled", true); */
+        $.ajax({
+          url: "importa.php",
+          type: "POST",
+          data: datos,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function(data) {
+            console.log("RES: ", data);
 
+          }
+        });
+
+      }
     })
   })
   </script>

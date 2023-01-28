@@ -1,7 +1,21 @@
 <?php
-require "../vendor/autoload.php";
-require "conexion.php";
-class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
+require_once "../vendor/autoload.php";
+require_once "conexion.php";
+
+class ajaxDatos{
+  public $filedate;
+  public function cargarExcel(){
+    $res = DatosController::ctrcargarExcel($this->filedate);
+    echo json_encode($res);
+  }
+  
+}
+if (isset($_FILES)) {
+  $archivo_excel_datos = new ajaxDatos();
+  $archivo_excel_datos ->filedate = $_FILES['filedate'];
+  $archivo_excel_datos->cargarExcel(); 
+}
+/* class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
 {
   public function readCell($column, $row, $worksheetName = '')
   {
@@ -16,21 +30,21 @@ $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
 
 $inputFileName = $_FILES['excel']['tmp_name']; 
 
-/**  Identify the type of $inputFileName  **/
+/**  Identify the type of $inputFileName  
 $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
-/**  Create a new Reader of the type that has been identified  **/
+/**  Create a new Reader of the type that has been identified 
 $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
 $reader->setReadFilter(new MyReadFilter());
-/**  Load $inputFileName to a Spreadsheet Object  **/
+/**  Load $inputFileName to a Spreadsheet Object  
 $spreadsheet = $reader->load($inputFileName);
 $cantidad = $spreadsheet->getActiveSheet()->toArray();
 foreach ($cantidad as $row){
   if($row[0]!=''){
     
-   /*  $sql = "INSERT INTO integrantes(id,nombre,apellido,correo,redes,puesto,descripcion) VALUE ('$row[0]','$row[1]','$row[2]','$row[3]','$row[4]','$row[5]','$row[6]')"; */
+   /*  $sql = "INSERT INTO integrantes(id,nombre,apellido,correo,redes,puesto,descripcion) VALUE ('$row[0]','$row[1]','$row[2]','$row[3]','$row[4]','$row[5]','$row[6]')"; 
     $result = $mysqli->query($sql);
   }
-}
+} */
 
 
 
