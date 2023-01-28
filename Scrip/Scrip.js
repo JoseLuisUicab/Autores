@@ -11,7 +11,7 @@
   }
 }); */
 /* fin code  */
-document.getElementById("txt_archivo").addEventListener("change", () => {
+/* document.getElementById("txt_archivo").addEventListener("change", () => {
   var filename = document.getElementById("txt_archivo").value;
   var idxDot = filename.indexOf(".") + 1;
   var extFile = filename.substring(idxDot, filename.length).toLowerCase();
@@ -42,7 +42,7 @@ function Cargarexcel() {
     }
   });
   return false;
-  
+   */
 
  /*  let excel = $("txt_archivo").val()
   if (excel === "") {
@@ -51,4 +51,4 @@ function Cargarexcel() {
     return;
   }
    */
-}
+/* } */
