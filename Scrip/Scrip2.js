@@ -1,5 +1,5 @@
 /*Menu*/
 $("#menu").click(function () {
-    $("#contenedormenu").toggleClass("abmenu");
+    $("#contenedormenu").toggleClass("abrirmenu");
   });
   /*Fin Menu*/
