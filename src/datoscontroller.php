@@ -2,8 +2,8 @@
 
 class DatosController{
   static public function ctrcargarExcel($filedate){
-    $res = DatosModelo::mdlcargarExcel($filedate);
-    return $res;
+    return  $res = DatosModelo::mdlcargarExcel($filedate);
+  
   }
 }
 ?>
