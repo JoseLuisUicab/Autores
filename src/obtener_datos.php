@@ -1,5 +1,5 @@
 <?php 
-require_once __DIR__ ."conexion.php";
+require_once "conexion.php";
 class Obetener{
   public function getUser(){
     $conn = new Conexion();

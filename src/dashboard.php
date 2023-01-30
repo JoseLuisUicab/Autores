@@ -112,8 +112,8 @@
 
 
   });
-  const Cargarexcel = async (e) => {
-    e.prevenDefault();
+  const Cargarexcel = async (event) => {
+
     let archivo = document.getElementById("txt_archivo");
     let import_files = archivo.value;
     if (archivo.length == 0) {
@@ -124,7 +124,9 @@
     formdata.append("excel", excel)
     const res = await $.ajax({
       type: "POST",
-      url: importa.php,
+      url: "importa.php",
+      processData: false, // tell jQuery not to process the data
+      contentType: false,
       data: formdata,
       succes: function(data) {
         Swal.fire({
@@ -134,13 +136,19 @@
         })
       },
       error: function(xhr, status) {
-
+        Swal.fire({
+          icon: 'error',
+          title: 'error',
+          text: 'archivo excel no cargado',
+        })
       }
 
 
     });
     return true;
   }
+
+  console.log("MOSTRANDO METODO", Cargarexcel());
   const getUser = async () => {
     const res = await fetch("obtener_datos.php");
     const json = await res.json();
