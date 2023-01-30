@@ -1,5 +1,8 @@
 <?php
-require_once "../vendor/autoload.php";
+require_once "../src/datoscontroller.php";
+require_once "../src/datosmodelo.php";
+
+require_once "vendor/autoload.php";
 require_once "conexion.php";
 
 class ajaxDatos{
@@ -7,6 +10,7 @@ class ajaxDatos{
   public function cargarExcel(){
     $res = DatosController::ctrcargarExcel($this->filedate);
     echo json_encode($res);
+    
   }
   
 }
