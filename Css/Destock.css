@@ -63,6 +63,10 @@ body{
   background-attachment: fixed;
   display: flex;
   filter: brightness(70%);
+  z-index: 1;
+}
+.Inicio div{
+  z-index: 5;
 }
 .Inicio h2{
   margin: auto;
@@ -117,7 +121,7 @@ body{
   border: 2px solid var(--mostaza);
   top: 100%;
   right: 0%;
-  opacity: 1;
+  opacity: 0;
   z-index: 10;
   transition: .2s;
   background-color: white;
@@ -144,7 +148,7 @@ body{
  border-bottom:solid #800101;
 }
 .navegacion ul.admenu{
-  opacity: 0;
+  opacity: 1;
 }
 /*Parte 1*/
 .teamle{
@@ -234,6 +238,12 @@ body{
   box-shadow: 1px -2px 12px -3px rgba(0,0,0,0.98);
   border: 2px solid #800101;
 }
+.persona2:hover figure img{
+  border: 2px solid  white;
+}
+.persona:hover figure img{
+  border: 2px solid  white;
+}
 .persona figure{
   width: 100%;
   height: 55%;
@@ -252,6 +262,7 @@ body{
   margin: auto;
   border-radius: 50%;
   z-index: 3;
+  transition: .5s;
 }
 .persona2 figure img{
   width: 140px;
@@ -259,6 +270,7 @@ body{
   margin: auto;
   border-radius: 50%;
   z-index: 3;
+  transition: .5s;
 }
 .iconos{
   border: 2px solid lightsalmon;
@@ -302,6 +314,32 @@ body{
   justify-content: center;
   padding: 6px;
 }
+/*Icono arriba*/
+#button-up{
+  width: 60px;
+  height: 60px;
+  background-color: #800101;
+  display: flex;
+  justify-content: center;
+  border: 2px solid white;
+  align-items: center;
+  color: white;
+  border-radius: 50%;
+  font-size: 30px;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  cursor: pointer;
+  
+  transform: scale(0);
+  transition: all 300ms ease;
+  z-index: 14;
+}
+#button-up:hover{
+  transform: scale(1);
+  border-color: rgba(0, 0, 0, .2);
+} 
+/*Fin icono arriba*/
 /*Fin Parte 1*/
 /*Login*/
 .Login{
@@ -351,7 +389,7 @@ body{
 }
 .Formulario input{
   display: block;
-
+  border: 2px solid gainsboro;
   margin: auto;
   width: 60%;
   height: 30px;
@@ -368,9 +406,26 @@ body{
   border-radius: 7px;
   background-color: white;
   transition: .5s;
+  font-size: 20px;
+}
+.Formulario a{
+  display: block;
+  border: 2px solid #D9AD26;
+  width: 40%;
+  margin: auto;
+  text-align: center;
+  border-radius: 7px;
+  background-color: white;
+  transition: .5s;
+  text-decoration: none;
+  color: black;
 }
 .Formulario button:hover{
   background-color: #800101;
+  color: white;
+}
+.Formulario a:hover{
+  background-color: #D9AD26;
   color: white;
 }
 /*FiN Lofing*/
