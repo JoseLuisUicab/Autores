@@ -31,15 +31,17 @@
               </div>
             </div>
             <div class="card-body">
-              <form method="post" enctype="multipart/form-data" id="cargar_datos">
+              <form method="post" enctype="multipart/form-data" id="cargar_datos" onsubmit="Cargarexcel(e)">
                 <div class="row">
                   <div class="col-lg-10">
-                    <input type="file" name="filedatos" id="filedatos" class="form-control" accept=".csv,.xlsx,.xls">
+                    <input type="file" name="txt_archivo" id="txt_archivo" class="form-control"
+                      accept=".csv,.xlsx,.xls">
                   </div>
                   <div class=" col-lg-2">
                     <!-- <input type="submit" value="Cargar Excel" class="btn btn-primary" id="btnCargar"> -->
                     <button type="submit" class="btn btn-primary">Importar excel</button>
                   </div>
+
                 </div>
               </form>
             </div>
@@ -96,40 +98,67 @@
       return;
     } else {
       Swal.fire("Mensaje De Error", "Extensión no permitida: " + ext + "", "error");
+      document.getElementById("txt_archivo").value = "";
+      return false;
     }
 
 
   });
-
-  function Cargarexcel() {
-    let archivo = document.getElementById("txt_archivo").value;
+  const Cargarexcel = async (e) => {
+    e.prevenDefault();
+    let archivo = document.getElementById("txt_archivo");
+    let import_files = archivo.value;
     if (archivo.length == 0) {
       return Swal.fire("mensaje de advertencia", "seleccione un archivo", "warning");
     }
     let formdata = new FormData();
-    let excel = $("#txt_archivo")[0].files[0];
-    formdata.append("archivoexcel", excel);
-    $.ajax({
-      url: "importa_excel_ajax.php",
+    let excel = archivo.files[0];
+    formdata.append("excel", excel)
+    const res = await $.ajax({
       type: "POST",
+      url: importa.php,
       data: formdata,
-      contentType: false,
-      processData: false,
-      success: function(resp) {
-        $("#div_tabla").html(resp);
+      succes: function(data) {
+        Swal.fire({
+          icon: 'success',
+          title: 'correct',
+          text: 'archivo excel cargado correctamente',
+        })
+      },
+      error: function(xhr, status) {
+
       }
+
+
     });
-    return false;
-
-
-    /*  let excel = $("txt_archivo").val()
-     if (excel === "") {
-       Swal.fire("Mensaje de Advertencia", "Seleccionar un rachivo excel" + extFile + "warning");
-       document.getElementById("txt_archivo").value = "";
-       return;
-     } */
-
+    return true;
   }
+  /*  function Cargarexcel() {
+     let archivo = document.getElementById("txt_archivo").value;
+     if (archivo.length == 0) {
+       return Swal.fire("mensaje de advertencia", "seleccione un archivo", "warning");
+     }
+     let formdata = new FormData();
+     let excel = $("#txt_archivo")[0].files[0];
+     formdata.append("archivoexcel", excel);
+     $.ajax({
+       url: "importa_excel_ajax.php",
+       type: "POST",
+       data: formdata,
+       contentType: false,
+       processData: false,
+       success: function(resp) {
+         $("#div_tabla").html(resp);
+       }
+     });
+     return false;
+   } */
+  /*  let excel = $("txt_archivo").val()
+   if (excel === "") {
+     Swal.fire("Mensaje de Advertencia", "Seleccionar un rachivo excel" + extFile + "warning");
+     document.getElementById("txt_archivo").value = "";
+     return;
+   } */
   </script>
   <!-- <script>
   $(document).ready(function() {
