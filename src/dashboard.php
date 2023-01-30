@@ -7,12 +7,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../Css/Destock.css">
   <link rel="stylesheet" href="../src/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!--   <meta http-equiv="refresh" content="2"> -->
   <title>Document</title>
 </head>
 
 <body>
+  <nav class="navegacion">
+    <figure class=logo><img src="../Imagenes/maia.png" alt=""></figure>
+
+    <a href="#" id="menu" class="menu">
+      <i class="icono fas fa-bars"></i>
+    </a>
+    <ul id="contenedormenu">
+      <li><a href="#" class="btn_ancla">INICIO</a></li>
+      <li><a href="#teamleader" class="btn_ancla">TEAM LEADER</a></li>
+      <li><a href="#Desarrolladores" class="btn_ancla">DESARROLLADORES</a></li>
+      <li><a href="Login.php" class="btn_ancla">ADMIN</a></li>
+    </ul>
+  </nav>
+
   <section class="content">
     <h1 class="fw-bold text-center bg-primary p-2" style="color:#DFBA49;">Administrador</h1>
     <div class="container-fluid my-4">
@@ -145,7 +160,7 @@
 
 
     });
-    return true;
+    return true
   }
 
   console.log("MOSTRANDO METODO", Cargarexcel());

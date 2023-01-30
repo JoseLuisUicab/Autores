@@ -1,26 +1,6 @@
 <?php
-/* require_once "../src/datoscontroller.php";
-require_once "../src/datosmodelo.php";
-
-require_once "vendor/autoload.php";
-require_once "conexion.php";
-
-class ajaxDatos{
-  public $filedate = "";
-
-  public function cargarExcel($res){
-    $res = DatosController::ctrcargarExcel($this->filedate);
-    echo json_encode($res);
-    
-  }
-  
-}
-if (isset($_FILES)) {
-  $archivo_excel_datos = new ajaxDatos();
-  $archivo_excel_datos ->filedate = $_FILES['filedate'];
-  $archivo_excel_datos->cargarExcel(); 
-} */
-require_once "vendor/autoload.php";
+require_once "../vendor/autoload.php";
+require_once "dashboard.php";
 require_once "conexion.php";
 class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
 {
@@ -35,7 +15,8 @@ class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
 
 $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
 
-$inputFileName = $_FILES['excel']['tmp_name']; 
+$inputFileName = $_FILES['excel']['tmp_name'];
+echo ($inputFileName);
 
 /**  Identify the type of $inputFileName  */
 $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
