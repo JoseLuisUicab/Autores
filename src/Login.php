@@ -22,7 +22,7 @@
             <label for="">Contraseña</label>
             <input type="text"><br>
             <button>Iniciar</button><br>
-            <button>Regresar</button>
+            <a href="Index.php">Regresar</a>
 
         </form>
         </div>
