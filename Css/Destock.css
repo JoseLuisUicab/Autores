@@ -349,6 +349,7 @@ body{
   background-repeat: no-repeat;
   background-size:cover;
   background-attachment: fixed;
+  position: absolute;
 }
 .Login figure{
   width: 100%;
@@ -396,11 +397,11 @@ body{
   border-radius: 10px;
   padding: 10px;
 }
-.Formulario button{
+.Formulario .enviar{
   display: block;
   border: 2px solid #800101;
   width: 40%;
-  height: 35px;
+  height: 45px;
   margin: auto;
   text-align: center;
   border-radius: 7px;
@@ -420,7 +421,7 @@ body{
   text-decoration: none;
   color: black;
 }
-.Formulario button:hover{
+.Formulario .enviar:hover{
   background-color: #800101;
   color: white;
 }
