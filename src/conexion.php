@@ -1,8 +1,17 @@
 <?php
-//header("Content-Type: text/html;charset=utf-8");
-$mysqli = new mysqli("localhost","root","","maiaa");
-if ($mysqli->connect_errno){
-  echo "Connect error: " . $mysqli ->connect_error;
-  die();
+
+class Conexion{
+  
+  private $host="localhost";
+  private $usua="root";
+  private $pass="";
+  private $nombre="maiaa";
+
+  public  function connect(){
+    $conn = new PDO("mysql:host=".$this->host.";dbname=".$this->nombre,$this->usua,$this->pass);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $conn;
+  }
 }
+
 ?>

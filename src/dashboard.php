@@ -14,7 +14,9 @@
 
 <body>
   <section class="content">
-    <div class="container-fluid">
+    <h1 class="fw-bold text-center bg-primary p-2" style="color:#DFBA49;">Administrador</h1>
+    <div class="container-fluid my-4">
+
       <!--  caja para subir -->
       <div class="row">
         <div class="col-lg-12">
@@ -35,7 +37,8 @@
                     <input type="file" name="filedatos" id="filedatos" class="form-control" accept=".csv,.xlsx,.xls">
                   </div>
                   <div class=" col-lg-2">
-                    <input type="submit" value="Cargar Excel" class="btn btn-primary" id="btnCargar">
+                    <!-- <input type="submit" value="Cargar Excel" class="btn btn-primary" id="btnCargar"> -->
+                    <button type="submit" class="btn btn-primary">Importar excel</button>
                   </div>
                 </div>
               </form>
@@ -46,13 +49,89 @@
       </div>
 
     </div>
+    <br><br><br><br>
+
+    <div class="container-fluid">
+      <table class="table" id="table_admin">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Puesto</th>
+            <th scope="col">Descripcion</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+
 
   </section>
 
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <!--   <script src="../Scrip/Scrip.js"></script> -->
   <script src="https://kit.fontawesome.com/59df0bc859.js" crossorigin="anonymous"></script>
+
   <script>
+  $('input[type="file"]').on('change', function() {
+    var ext = $(this).val().split('.').pop();
+    if ($(this).val() != '') {
+      if (ext == "xls" || ext == "xlsx" || ext == "csv") {} else {
+        $(this).val('');
+        Swal.fire("Mensaje De Error", "Extensión no permitida: " + ext + "", "error");
+      }
+    }
+  });
+
+  document.getElementById("txt_archivo").addEventListener("change", () => {
+    var filename = document.getElementById("txt_archivo").value;
+    var idxDot = filename.indexOf(".") + 1;
+    var extFile = filename.substring(idxDot, filename.length).toLowerCase();
+    if (extFile == "xlsx" || extFile == "csv") {
+      return;
+    } else {
+      Swal.fire("Mensaje De Error", "Extensión no permitida: " + ext + "", "error");
+    }
+
+
+  });
+
+  function Cargarexcel() {
+    let archivo = document.getElementById("txt_archivo").value;
+    if (archivo.length == 0) {
+      return Swal.fire("mensaje de advertencia", "seleccione un archivo", "warning");
+    }
+    let formdata = new FormData();
+    let excel = $("#txt_archivo")[0].files[0];
+    formdata.append("archivoexcel", excel);
+    $.ajax({
+      url: "importa_excel_ajax.php",
+      type: "POST",
+      data: formdata,
+      contentType: false,
+      processData: false,
+      success: function(resp) {
+        $("#div_tabla").html(resp);
+      }
+    });
+    return false;
+
+
+    /*  let excel = $("txt_archivo").val()
+     if (excel === "") {
+       Swal.fire("Mensaje de Advertencia", "Seleccionar un rachivo excel" + extFile + "warning");
+       document.getElementById("txt_archivo").value = "";
+       return;
+     } */
+
+  }
+  </script>
+  <!-- <script>
   $(document).ready(function() {
     $("#cargar_datos").on("submit", function(e) {
       e.preventDefault();
@@ -100,7 +179,7 @@
       }
     })
   })
-  </script>
+  </script> -->
 
 
 
