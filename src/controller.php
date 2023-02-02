@@ -9,7 +9,7 @@
         $contrasenia=$_POST["contrasena"];
         $sql=$conexion->query(" select * from login where Nombre='$usuario' and Contraseña='$contrasenia' ");
         if ($datos=$sql->fetch_object()) {
-            header("Location:Index.php");
+            header("Location:dashboard.php");
         } else {
             echo'<script language="javascript">alert("Los datos son Incorrectos");</script>';
         }
