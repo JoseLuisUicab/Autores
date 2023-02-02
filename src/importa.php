@@ -1,7 +1,8 @@
 <?php
-require_once "../vendor/autoload.php";
-require_once "dashboard.php";
+ require_once "../vendor/autoload.php";
+
 require_once "conexion.php";
+require_once "dashboard.php";
 class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
 {
   public function readCell($column, $row, $worksheetName = '')
@@ -13,17 +14,16 @@ class MyReadFilter implements \PhpOffice\PhpSpreadsheet\Reader\IReadFilter
   }
 }
 
-$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 
 $inputFileName = $_FILES['excel']['tmp_name'];
-echo ($inputFileName);
-
-/**  Identify the type of $inputFileName  */
-$inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
-/* Create a new Reader of the type that has been identified  */
-$reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
+/* $inputFileName = basename($inputFileName); */
+/*  Identify the type of $inputFileName   */
+/* $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName); */
+/* Create a new Reader of the type that has been identified 
+ *//* $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileName); */
 $reader->setReadFilter(new MyReadFilter());
-/* // Load $inputFileName to a Spreadsheet Object   */
+/* Load $inputFileName to a Spreadsheet Object   */ 
 $spreadsheet = $reader->load($inputFileName);
 $cantidad = $spreadsheet->getActiveSheet()->toArray();
 foreach ($cantidad as $row){
@@ -40,5 +40,5 @@ foreach ($cantidad as $row){
     $stmt->bindValue(":descripcion",$row[6]);
     $stmt->execute();
   }
-} 
+}  
 ?>

@@ -97,8 +97,7 @@ function Cargarexcel() {
    Swal.fire("Mensaje de Advertencia", "Seleccionar un rachivo excel" + extFile + "warning");
    document.getElementById("txt_archivo").value = "";
    return;
- } */
-
+ } 
 
 
 /* 
@@ -150,4 +149,4 @@ function Cargarexcel() {
       }
     })
   })
-  </ >  */
+  */

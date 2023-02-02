@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <nav class="navegacion">
+  <!--  <nav class="navegacion">
     <figure class=logo><img src="../Imagenes/maia.png" alt=""></figure>
 
     <a href="#" id="menu" class="menu">
@@ -26,34 +26,31 @@
       <li><a href="#Desarrolladores" class="btn_ancla">DESARROLLADORES</a></li>
       <li><a href="Login.php" class="btn_ancla">ADMIN</a></li>
     </ul>
-  </nav>
+  </nav> -->
 
   <section class="content">
     <h1 class="fw-bold text-center bg-primary p-2" style="color:#DFBA49;">Administrador</h1>
     <div class="container-fluid my-4">
 
-      <!--  caja para subir -->
+      <!-- caja para subir  -->
       <div class="row">
         <div class="col-lg-12">
           <div class="card card-info">
             <div class="card-header">
               <h3 class="card-title">Seleccionar archivo excel o CSV</h3>
               <div class="card-tools">
-                <!--    <button type="button" class="btn btn-primary" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button> -->
 
               </div>
             </div>
             <div class="card-body">
-              <form method="post" enctype="multipart/form-data" id="cargar_datos" onsubmit="Cargarexcel(e)">
+              <form method="post" enctype="multipart/form-data" id="cargar_datos"
+                onsubmit="Cargarexcel();return false;">
                 <div class="row">
                   <div class="col-lg-10">
-                    <input type="file" name="txt_archivo" id="txt_archivo" class="form-control"
-                      accept=".csv,.xlsx,.xls">
+                    <input type="file" name="txt" id="txt_archivo" class="form-control" accept=".csv,.xlsx,.xls">
                   </div>
                   <div class=" col-lg-2">
-                    <!-- <input type="submit" value="Cargar Excel" class="btn btn-primary" id="btnCargar"> -->
+
                     <button type="submit" class="btn btn-primary">Importar excel</button>
                   </div>
 
@@ -87,13 +84,14 @@
         </tbody>
       </table>
     </div>
-
-
   </section>
 
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <!--   <script src="../Scrip/Scrip.js"></script> -->
   <script src="https://kit.fontawesome.com/59df0bc859.js" crossorigin="anonymous"></script>
+
+
+
 
   <script>
   $('input[type="file"]').on('change', function() {
@@ -118,24 +116,28 @@
       return false;
     }
 
-    let excel = $("txt_archivo").val()
-    if (excel === "") {
-      Swal.fire("Mensaje de Advertencia", "Seleccionar un rachivo excel" + extFile + "warning");
-      document.getElementById("txt_archivo").value = "";
-      return;
-    }
+    /*  let excel = $("txt_archivo").val()
+     if (excel === "") {
+       Swal.fire("Mensaje de Advertencia", "Seleccionar un rachivo excel" + extFile + "warning");
+       document.getElementById("txt_archivo").value = "";
+       return;
+     } */
 
 
   });
-  const Cargarexcel = async (event) => {
-
+  const Cargarexcel = async () => {
+    /*   event.preventDefault(); */
     let archivo = document.getElementById("txt_archivo");
+    console.log("FILE",
+      archivo);
     let import_files = archivo.value;
     if (archivo.length == 0) {
       return Swal.fire("mensaje de advertencia", "seleccione un archivo", "warning");
     }
     let formdata = new FormData();
     let excel = archivo.files[0];
+    console.log("HOLAAAA",
+      excel);
     formdata.append("excel", excel)
     const res = await $.ajax({
       type: "POST",
@@ -163,7 +165,6 @@
     return true
   }
 
-  console.log("MOSTRANDO METODO", Cargarexcel());
   const getUser = async () => {
     const res = await fetch("obtener_datos.php");
     const json = await res.json();
