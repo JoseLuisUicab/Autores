@@ -50,7 +50,7 @@
                   </div>
                   <div class=" col-lg-2">
 
-                    <input type="submit" class="btn btn-primary" value="Importar excel" onclick="recarga()">
+                    <input type="submit" class="btn btn-primary" value="Importar excel">
                   </div>
 
                 </div>
@@ -62,11 +62,12 @@
       </div>
 
     </div>
-    <br><br><br><br>
+    <br><br>
 
-    <div class="container-fluid">
-      <table class="table caption-top" id="table_admin">
-        <caption class="fw-bold fs-5">Lista de Integrantes</caption>
+    <div class="table-responsive text-center p-2">
+      <h1 class=" fw-bold fs-2 p-3">Lista de Integrantes</h1>
+      <table class="table table-bordered" id="table_admin">
+
         <thead class="thead-dark">
           <tr>
             <th scope="col">ID</th>
@@ -76,6 +77,8 @@
             <th scope="col">Correo</th>
             <th scope="col">Puesto</th>
             <th scope="col">Descripcion</th>
+            <th scope="col">Modificar</th>
+            <th scope="col">Borrar</th>
           </tr>
         </thead>
         <tbody>
@@ -179,7 +182,8 @@
       <td>${json[i].redes}</td>
       <td>${json[i].puesto}</td>
       <td>${json[i].descripcion}</td>
-      <td>${}</td>
+      <td><button class='btn btn-sm btn-primary botonmodificar'>Modificar</button></td>
+      <td><button class='btn btn-sm btn-secondary botonborrar'>Borrar</button></td>
       </tr>
       `
     }
