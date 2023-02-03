@@ -174,8 +174,7 @@
     for (let i = 0; i < json.length; i++) {
       template += `
       <tr>
-      <td>${json[i
-      ].id}</td>
+      <td>${json[i].id}</td>
       <td>${json[i].nombre}</td>
       <td>${json[i].apellido}</td>
       <td>${json[i].correo}</td>
