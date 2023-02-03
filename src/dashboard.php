@@ -43,15 +43,14 @@
               </div>
             </div>
             <div class="card-body">
-              <form method="post" enctype="multipart/form-data" id="cargar_datos"
-                onsubmit="Cargarexcel();return false;">
+              <form method="post" enctype="multipart/form-data" id="cargar_datos" onsubmit="Cargarexcel(event) ">
                 <div class="row">
                   <div class="col-lg-10">
                     <input type="file" name="txt" id="txt_archivo" class="form-control" accept=".csv,.xlsx,.xls">
                   </div>
                   <div class=" col-lg-2">
 
-                    <button type="submit" class="btn btn-primary">Importar excel</button>
+                    <input type="submit" class="btn btn-primary" value="Importar excel" onclick="recarga()">
                   </div>
 
                 </div>
@@ -94,7 +93,7 @@
 
 
   <script>
-  $('input[type="file"]').on('change', function() {
+  /*   $('input[type="file"]').on('change', function() {
     var ext = $(this).val().split('.').pop();
     if ($(this).val() != '') {
       if (ext == "xls" || ext == "xlsx" || ext == "csv") {} else {
@@ -103,6 +102,7 @@
       }
     }
   });
+ */
 
   document.getElementById("txt_archivo").addEventListener("change", () => {
     var filename = document.getElementById("txt_archivo").value;
@@ -125,44 +125,43 @@
 
 
   });
-  const Cargarexcel = async () => {
-    /*   event.preventDefault(); */
+  const Cargarexcel = async (event) => {
+    event.preventDefault();
     let archivo = document.getElementById("txt_archivo");
-    console.log("FILE",
-      archivo);
     let import_files = archivo.value;
-    if (archivo.length == 0) {
+    if (import_files.length == 0) {
       return Swal.fire("mensaje de advertencia", "seleccione un archivo", "warning");
+    } else {
+      let formdata = new FormData();
+      let excel = archivo.files[0];
+      formdata.append("excel", excel)
+      const res = await $.ajax({
+        type: "POST",
+        url: "importa.php",
+        data: formdata,
+        processData: false,
+        contentType: false,
+        succes: function(data) {
+          Swal.fire({
+            icon: 'success',
+            title: 'correct',
+            text: 'archivo excel cargado correctamente',
+          })
+        },
+        error: function(xhr, status) {
+          Swal.fire({
+            icon: 'error',
+            title: 'error',
+            text: 'archivo excel no cargado',
+          })
+        }
+
+
+      });
     }
-    let formdata = new FormData();
-    let excel = archivo.files[0];
-    console.log("HOLAAAA",
-      excel);
-    formdata.append("excel", excel)
-    const res = await $.ajax({
-      type: "POST",
-      url: "importa.php",
-      processData: false, // tell jQuery not to process the data
-      contentType: false,
-      data: formdata,
-      succes: function(data) {
-        Swal.fire({
-          icon: 'success',
-          title: 'correct',
-          text: 'archivo excel cargado correctamente',
-        })
-      },
-      error: function(xhr, status) {
-        Swal.fire({
-          icon: 'error',
-          title: 'error',
-          text: 'archivo excel no cargado',
-        })
-      }
+    window.location.reload();
 
-
-    });
-    return true
+    return true;;
   }
 
   const getUser = async () => {
@@ -172,19 +171,23 @@
     for (let i = 0; i < json.length; i++) {
       template += `
       <tr>
-      <td>${json[i].id}</td>
+      <td>${json[i
+      ].id}</td>
       <td>${json[i].nombre}</td>
       <td>${json[i].apellido}</td>
       <td>${json[i].correo}</td>
       <td>${json[i].redes}</td>
       <td>${json[i].puesto}</td>
       <td>${json[i].descripcion}</td>
+      <td>${}</td>
       </tr>
       `
     }
     document.querySelector("#table_admin tbody").innerHTML = template;
   }
+  getUser();
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </body>
 
 </html>
