@@ -416,10 +416,13 @@ footer {
   display: flex;
   justify-content: space-between;
 }
+.maia1 {
+  border: 1px solid yellow;
+  width: 10px;
+}
 .maia {
   width: 180px;
   height: 70px;
-  border: 2px solid black;
   display: flex;
   margin: 15px;
 }
@@ -431,13 +434,8 @@ footer {
   margin: 0;
 }
 .maia i {
-  border: 2px solid red;
   font-size: 40px;
   margin: auto;
-}
-
-.maia1 {
-  width: 120px;
 }
 
 /*Fin Footer*/

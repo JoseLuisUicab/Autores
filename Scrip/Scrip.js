@@ -1,17 +1,4 @@
-/* script validacion excel para la subida de archivo */
-/* $('input[type="file"]').on('change', function () {
-  var ext = $(this).val().split('.').pop();
-  if ($(this).val() != '') {
-    if (ext == "xls" || ext == "xlsx" || ext == "csv") {
-    }
-    else {
-      $(this).val('');
-      Swal.fire("Mensaje De Error", "Extensión no permitida: " + ext + "", "error");
-    }
-  }
-}); */
-/* fin code  */
-/* document.getElementById("txt_archivo").addEventListener("change", () => {
+document.getElementById("txt_archivo").addEventListener("change", () => {
   var filename = document.getElementById("txt_archivo").value;
   var idxDot = filename.indexOf(".") + 1;
   var extFile = filename.substring(idxDot, filename.length).toLowerCase();
@@ -19,50 +6,158 @@
     return;
   } else {
     Swal.fire("Mensaje De Error", "Extensión no permitida: " + ext + "", "error");
+    document.getElementById("txt_archivo").value = "";
+    return false;
   }
+});
+const Cargarexcel = async (event) => {
+  event.preventDefault();
+  let archivo = document.getElementById("txt_archivo");
+  let import_files = archivo.value;
+  if (import_files.length == 0) {
+    return Swal.fire("mensaje de advertencia", "seleccione un archivo", "warning");
+  } else {
+    let formdata = new FormData();
+    let excel = archivo.files[0];
+    formdata.append("excel", excel)
+    const res = await $.ajax({
+      type: "POST",
+      url: "importa.php",
+      data: formdata,
+      processData: false,
+      contentType: false,
+      succes: function (data) {
+        Swal.fire({
+          icon: 'success',
+          title: 'correct',
+          text: 'archivo excel cargado correctamente',
+        })
+      },
+      error: function (xhr, status) {
+        Swal.fire({
+          icon: 'error',
+          title: 'error',
+          text: 'archivo excel no cargado',
+        })
+      }
 
+
+    });
+  }
+  window.location.reload();
+
+  return true;;
+}
+
+const getUser = async () => {
+  const res = await fetch("obtener_datos.php");
+  const json = await res.json();
+  let template = ''
+  for (let i = 0; i < json.length; i++) {
+    template += `
+      <tr>
+      <td>${json[i].id}</td>
+      <td>${json[i].nombre}</td>
+      <td>${json[i].apellido}</td>
+      <td>${json[i].correo}</td>
+      <td>${json[i].redes}</td>
+      <td>${json[i].puesto}</td>
+      <td>${json[i].descripcion}</td>
+      <td><button class='btn btn-sm btn-primary botonmodificar'>Modificar</button></td>
+      <td><button class='btn btn-sm btn-secondary botonborrar'>Borrar</button></td>
+      </tr>
+      `
+  }
+  document.querySelector("#table_admin tbody").innerHTML = template;
+}
+getUser();
+
+
+
+/* Recuperar el registro*/
+
+/*======================== */
+$('#ConfirmarModificar').click(function () {
+  $("#FormularioArticulo").modal('hide');
+  let registro = recuperarDatosFormulario();
+  modificarRegistro(registro);
 });
 
-function Cargarexcel() {
-  let archivo = document.getElementById("txt_archivo").value;
-  if (archivo.length ==0) { 
-    return Swal.fire("mensaje de advertencia", "seleccione un archivo", "warning");
-  }
-  let formdata = new FormData();
-  let excel = $("#txt_archivo")[0].files[0];
-  formdata.append("archivoexcel", excel);
+$('#table_admin tbody').on('click', 'button.botonmodificar', function () {
+  $('#ConfirmarAgregar').hide();
+  $('#ConfirmarModificar').show();
+  let registro = tabla1.row($(this).parents('tr')).data();
+  recuperarRegistro(registro.id);
+});
+
+/*============ === === === === */
+function limpiarFormulario() {
+  $('#id').val('');
+  $('#nombre').val('');
+  $('#apellido').val('');
+  $('#correo').val('');
+  $('#redes').val('');
+  $('#puesto').val('');
+  $('#descripcion').val('');
+  
+}
+
+function recuperarDatosFormulario() {
+  let registro = {
+    id: $('#id').val(),
+    nombre:$('#nombre').val(),
+    apellido: $('#apellido').val(),
+    correo:$('#correo').val(),
+    redes:$('#redes').val(),
+    puesto:$('#puesto').val(),
+    descripcion: $('#descripcion').val()
+  };
+  return registro;
+}
+
+function recuperarRegistro(codigo) {
   $.ajax({
-    url: "importa_excel_ajax.php",
-    type: "POST",
-    data: formdata,
-    contentType: false,
-    processData: false,
-    success: function (resp) {
-      $("#div_tabla").html(resp);
+    type: 'GET',
+    url: 'datos.php?accion=consultar&id=' + id,
+    data: '',
+    success: function (datos) {
+      $('#id').val(datos[0].id);
+      $('#nombre').val(datos[0].nombre);
+      $('#apellido').val(datos[0].apellido);
+      $('#correo').val(datos[0].correo);
+      $('#redes').val(datos[0].redes);
+      $('#puesto').val(datos[0].puesto);
+      $('#descripcion').val(datos[0].descripcion);
+      $("#FormularioArticulo").modal('show');
+    /*  $('#Codigo').val(datos[0].codigo);
+      $('#Descripcion').val(datos[0].descripcion);
+      $('#Precio').val(datos[0].precio); */
+    },
+    error: function () {
+      alert("Hay un problema");
     }
   });
-  return false;
-   */
+}
 
- /*  let excel = $("txt_archivo").val()
-  if (excel === "") {
-    Swal.fire("Mensaje de Advertencia", "Seleccionar un rachivo excel" + extFile + "warning");
-    document.getElementById("txt_archivo").value = "";
-    return;
-  }
-   */
-/* } */
-
-
-
-
-
-
+function modificarRegistro(registro) {
+  $.ajax({
+    type: 'POST',
+    url: 'datos.php?accion=modificar&id=' + registro.id,
+    data: registro,
+    success: function (msg) {
+      tabla1.ajax.reload();
+    },
+    error: function () {
+      alert("Hay un problema");
+    }
+  });
+}
 
 
 
 
 
+/*FIN ecuperar el registro*/
 
 
 
@@ -150,3 +245,16 @@ function Cargarexcel() {
     })
   })
   */
+
+
+
+
+
+
+
+
+
+
+
+
+

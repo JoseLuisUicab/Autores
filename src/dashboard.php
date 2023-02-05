@@ -15,14 +15,7 @@
 
 <body>
   <section class="content">
-    <div class="d-flex justify-content-between align-items-center bg-primary">
-      <figure class="maia1">
-        <img src="../Imagenes/maia.png" alt="">
-      </figure>
-      <h1 class="fw-bold  p-2" style="color:#DFBA49;">Administrador</h1>
-    </div>
-
-
+    <h1 class="fw-bold text-center bg-primary p-2" style="color:#DFBA49;">Administrador</h1>
     <div class="container-fluid my-4">
       <div class="m-0 mb-2">
         <a class="btn btn-primary" href="login.php">Salir&nbsp;&nbsp;<i
@@ -96,23 +89,66 @@
             </button>
           </div>
           <div class="modal-body">
-            <input type="hidden" id="Codigo">
+            <input type="hidden" id="id">
+            <!-- Nombre -->
             <div class="form-row">
               <div class="form-group col-md-12">
-                <label>Descripción:</label>
-                <input type="text" id="Descripcion" class="form-control" placeholder="">
+                <label>Nombre:</label>
+                <input type="text" id="nombre" class="form-control" placeholder="">
               </div>
             </div>
+            <!--FIN Nombre -->
 
+            <!-- Apellido -->
             <div class="form-row">
               <div class="form-group col-md-12">
-                <label>Precio:</label>
-                <input type="number" id="Precio" class="form-control" placeholder="">
+                <label>Apellido:</label>
+                <input type="text" id="apellido" class="form-control" placeholder="">
               </div>
             </div>
+            <!--Fin APellido  -->
+
+            <!-- Correo -->
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label>Correo:</label>
+                <input type="text" id="correo" class="form-control" placeholder="">
+              </div>
+            </div>
+            <!--FIn correo  -->
+
+            <!-- Redes -->
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label>Redes:</label>
+                <input type="text" id="redes" class="form-control" placeholder="">
+              </div>
+            </div>
+            <!--Fin Redes  -->
+
+            <!-- puesto -->
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label>Puesto:</label>
+                <input type="text" id="puesto" class="form-control" placeholder="">
+              </div>
+            </div>
+            <!--Fin puesto  -->
+
+            <!-- Descripcion -->
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label>Descripcion:</label>
+                <input type="text" id="descripcion" class="form-control" placeholder="">
+              </div>
+            </div>
+            <!--Fin Descripcion  -->
+
+
+
 
             <div class="modal-footer">
-              <button type="button" id="ConfirmarAgregar" class="btn btn-success">Agregar</button>
+              <!--    <button type="button" id="ConfirmarAgregar" class="btn btn-success">Agregar</button> -->
               <button type="button" id="ConfirmarModificar" class="btn btn-success">Modificar</button>
               <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
             </div>
@@ -128,157 +164,7 @@
 
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <!--   <script src="../Scrip/Scrip.js"></script> -->
-  <script src="https://kit.fontawesome.com/59df0bc859.js" crossorigin="anonymous"></script>
-
-
-
-
-  <script>
-  document.getElementById("txt_archivo").addEventListener("change", () => {
-    var filename = document.getElementById("txt_archivo").value;
-    var idxDot = filename.indexOf(".") + 1;
-    var extFile = filename.substring(idxDot, filename.length).toLowerCase();
-    if (extFile == "xlsx" || extFile == "csv") {
-      return;
-    } else {
-      Swal.fire("Mensaje De Error", "Extensión no permitida: " + ext + "", "error");
-      document.getElementById("txt_archivo").value = "";
-      return false;
-    }
-  });
-  const Cargarexcel = async (event) => {
-    event.preventDefault();
-    let archivo = document.getElementById("txt_archivo");
-    let import_files = archivo.value;
-    if (import_files.length == 0) {
-      return Swal.fire("mensaje de advertencia", "seleccione un archivo", "warning");
-    } else {
-      let formdata = new FormData();
-      let excel = archivo.files[0];
-      formdata.append("excel", excel)
-      const res = await $.ajax({
-        type: "POST",
-        url: "importa.php",
-        data: formdata,
-        processData: false,
-        contentType: false,
-        succes: function(data) {
-          Swal.fire({
-            icon: 'success',
-            title: 'correct',
-            text: 'archivo excel cargado correctamente',
-          })
-        },
-        error: function(xhr, status) {
-          Swal.fire({
-            icon: 'error',
-            title: 'error',
-            text: 'archivo excel no cargado',
-          })
-        }
-
-
-      });
-    }
-    window.location.reload();
-
-    return true;;
-  }
-
-  const getUser = async () => {
-    const res = await fetch("obtener_datos.php");
-    const json = await res.json();
-    let template = ''
-    for (let i = 0; i < json.length; i++) {
-      template += `
-      <tr>
-      <td>${json[i].id}</td>
-      <td>${json[i].nombre}</td>
-      <td>${json[i].apellido}</td>
-      <td>${json[i].correo}</td>
-      <td>${json[i].redes}</td>
-      <td>${json[i].puesto}</td>
-      <td>${json[i].descripcion}</td>
-      <td><button class='btn btn-sm btn-primary botonmodificar'>Modificar</button></td>
-      <td><button class='btn btn-sm btn-secondary botonborrar'>Borrar</button></td>
-      </tr>
-      `
-    }
-    document.querySelector("#table_admin tbody").innerHTML = template;
-  }
-  getUser();
-
-
-
-  /* Recuperar el registro*/
-
-  /*======================== */
-  $('#ConfirmarModificar').click(function() {
-    $("#FormularioArticulo").modal('hide');
-    let registro = recuperarDatosFormulario();
-    modificarRegistro(registro);
-  });
-
-  $('#table_admin tbody').on('click', 'button.botonmodificar', function() {
-    $('#ConfirmarAgregar').hide();
-    $('#ConfirmarModificar').show();
-    let registro = tabla1.row($(this).parents('tr')).data();
-    recuperarRegistro(registro.codigo);
-  });
-
-  /*============ === === === === */
-  function limpiarFormulario() {
-    $('#Codigo').val('');
-    $('#Descripcion').val('');
-    $('#Precio').val('');
-  }
-
-  function recuperarDatosFormulario() {
-    let registro = {
-      codigo: $('#Codigo').val(),
-      descripcion: $('#Descripcion').val(),
-      precio: $('#Precio').val()
-    };
-    return registro;
-  }
-
-  function recuperarRegistro(codigo) {
-    $.ajax({
-      type: 'GET',
-      url: 'datos.php?accion=consultar&id=' + id,
-      data: '',
-      success: function(datos) {
-        $('#Codigo').val(datos[0].codigo);
-        $('#Descripcion').val(datos[0].descripcion);
-        $('#Precio').val(datos[0].precio);
-        $("#FormularioArticulo").modal('show');
-      },
-      error: function() {
-        alert("Hay un problema");
-      }
-    });
-  }
-
-  function modificarRegistro(registro) {
-    $.ajax({
-      type: 'POST',
-      url: 'datos.php?accion=modificar&codigo=' + registro.codigo,
-      data: registro,
-      success: function(msg) {
-        tabla1.ajax.reload();
-      },
-      error: function() {
-        alert("Hay un problema");
-      }
-    });
-  }
-
-
-
-
-
-  /*FIN ecuperar el registro*/
-  </script>
+  <script src="../Scrip/Scrip.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/59df0bc859.js" crossorigin="anonymous"></script>
 </body>
