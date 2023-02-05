@@ -121,7 +121,10 @@ let tabla1 = $("#table_admin").DataTable({
   targets: 8,
     "defaultContent": "<button class='btn btn-secondary botonborrar'>Borrar</button>",
     data: null
-  }],
+    }],
+  "language": {
+    "url": "DataTables/spanish.json",
+  },
 });
 $('#ConfirmarModificar').click(function () {
   $("#FormularioArticulo").modal('hide');
@@ -130,7 +133,6 @@ $('#ConfirmarModificar').click(function () {
 });
 
 $('#table_admin tbody').on('click', 'button.botonmodificar', function () {
-  $('#ConfirmarAgregar').hide();
   $('#ConfirmarModificar').show();
   let registro = tabla1.row($(this).parents('tr')).data();
   recuperarRegistro(registro.id);
@@ -138,10 +140,30 @@ $('#table_admin tbody').on('click', 'button.botonmodificar', function () {
 
 
 $('#table_admin tbody').on('click', 'button.botonborrar', function () {
-  if (confirm("¿Realmente quiere borrar el registro?")) {
+  Swal.fire({
+    title: 'Borrar',
+    text: "seguro que deseas elimnarlo!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#740101',
+    cancelButtonColor: '#DFBA49',
+    confirmButtonText: 'Si borrar!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Borrado!',
+        'registro borrado.',
+        'success'
+      )
+      let registro = tabla1.row($(this).parents('tr')).data();
+      borrarRegistro(registro.id)
+    }
+  })
+
+  /* if (confirm("¿Realmente quiere borrar el registro?")) {
     let registro = tabla1.row($(this).parents('tr')).data();
     borrarRegistro(registro.id);
-  }
+  } */
 });
 
 /*============ === === === === */
