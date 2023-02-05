@@ -14,30 +14,26 @@
 </head>
 
 <body>
-  <!--  <nav class="navegacion">
-    <figure class=logo><img src="../Imagenes/maia.png" alt=""></figure>
-
-    <a href="#" id="menu" class="menu">
-      <i class="icono fas fa-bars"></i>
-    </a>
-    <ul id="contenedormenu">
-      <li><a href="#" class="btn_ancla">INICIO</a></li>
-      <li><a href="#teamleader" class="btn_ancla">TEAM LEADER</a></li>
-      <li><a href="#Desarrolladores" class="btn_ancla">DESARROLLADORES</a></li>
-      <li><a href="Login.php" class="btn_ancla">ADMIN</a></li>
-    </ul>
-  </nav> -->
-
   <section class="content">
-    <h1 class="fw-bold text-center bg-primary p-2" style="color:#DFBA49;">Administrador</h1>
-    <div class="container-fluid my-4">
+    <div class="d-flex justify-content-between align-items-center bg-primary">
+      <figure class="maia1">
+        <img src="../Imagenes/maia.png" alt="">
+      </figure>
+      <h1 class="fw-bold  p-2" style="color:#DFBA49;">Administrador</h1>
+    </div>
 
+
+    <div class="container-fluid my-4">
+      <div class="m-0 mb-2">
+        <a class="btn btn-primary" href="login.php">Salir&nbsp;&nbsp;<i
+            class="fa-solid fa-circle-xmark text-whit fs-5"></i></a>
+      </div>
       <!-- caja para subir  -->
       <div class="row">
         <div class="col-lg-12">
           <div class="card card-info">
             <div class="card-header">
-              <h3 class="card-title">Seleccionar archivo excel o CSV</h3>
+              <h3 class="card-title">Seleccionar archivo excel</h3>
               <div class="card-tools">
 
               </div>
@@ -74,7 +70,7 @@
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Correo</th>
-            <th scope="col">Correo</th>
+            <th scope="col">redes</th>
             <th scope="col">Puesto</th>
             <th scope="col">Descripcion</th>
             <th scope="col">Modificar</th>
@@ -86,7 +82,49 @@
         </tbody>
       </table>
     </div>
+
+
+
+    <!-- MODAL PARA MODIFICAR -->
+    <div class="modal fade" id="FormularioArticulo" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="Codigo">
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label>Descripción:</label>
+                <input type="text" id="Descripcion" class="form-control" placeholder="">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label>Precio:</label>
+                <input type="number" id="Precio" class="form-control" placeholder="">
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" id="ConfirmarAgregar" class="btn btn-success">Agregar</button>
+              <button type="button" id="ConfirmarModificar" class="btn btn-success">Modificar</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--FIN MODAL MODIFICAR  -->
   </section>
+
+  <?php   require("Footer.php");  ?>
+
 
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <!--   <script src="../Scrip/Scrip.js"></script> -->
@@ -96,17 +134,6 @@
 
 
   <script>
-  /*   $('input[type="file"]').on('change', function() {
-    var ext = $(this).val().split('.').pop();
-    if ($(this).val() != '') {
-      if (ext == "xls" || ext == "xlsx" || ext == "csv") {} else {
-        $(this).val('');
-        Swal.fire("Mensaje De Error", "Extensión no permitida: " + ext + "", "error");
-      }
-    }
-  });
- */
-
   document.getElementById("txt_archivo").addEventListener("change", () => {
     var filename = document.getElementById("txt_archivo").value;
     var idxDot = filename.indexOf(".") + 1;
@@ -118,15 +145,6 @@
       document.getElementById("txt_archivo").value = "";
       return false;
     }
-
-    /*  let excel = $("txt_archivo").val()
-     if (excel === "") {
-       Swal.fire("Mensaje de Advertencia", "Seleccionar un rachivo excel" + extFile + "warning");
-       document.getElementById("txt_archivo").value = "";
-       return;
-     } */
-
-
   });
   const Cargarexcel = async (event) => {
     event.preventDefault();
@@ -189,8 +207,80 @@
     document.querySelector("#table_admin tbody").innerHTML = template;
   }
   getUser();
+
+
+
+  /* Recuperar el registro*/
+
+  /*======================== */
+  $('#ConfirmarModificar').click(function() {
+    $("#FormularioArticulo").modal('hide');
+    let registro = recuperarDatosFormulario();
+    modificarRegistro(registro);
+  });
+
+  $('#table_admin tbody').on('click', 'button.botonmodificar', function() {
+    $('#ConfirmarAgregar').hide();
+    $('#ConfirmarModificar').show();
+    let registro = tabla1.row($(this).parents('tr')).data();
+    recuperarRegistro(registro.codigo);
+  });
+
+  /*============ === === === === */
+  function limpiarFormulario() {
+    $('#Codigo').val('');
+    $('#Descripcion').val('');
+    $('#Precio').val('');
+  }
+
+  function recuperarDatosFormulario() {
+    let registro = {
+      codigo: $('#Codigo').val(),
+      descripcion: $('#Descripcion').val(),
+      precio: $('#Precio').val()
+    };
+    return registro;
+  }
+
+  function recuperarRegistro(codigo) {
+    $.ajax({
+      type: 'GET',
+      url: 'datos.php?accion=consultar&id=' + id,
+      data: '',
+      success: function(datos) {
+        $('#Codigo').val(datos[0].codigo);
+        $('#Descripcion').val(datos[0].descripcion);
+        $('#Precio').val(datos[0].precio);
+        $("#FormularioArticulo").modal('show');
+      },
+      error: function() {
+        alert("Hay un problema");
+      }
+    });
+  }
+
+  function modificarRegistro(registro) {
+    $.ajax({
+      type: 'POST',
+      url: 'datos.php?accion=modificar&codigo=' + registro.codigo,
+      data: registro,
+      success: function(msg) {
+        tabla1.ajax.reload();
+      },
+      error: function() {
+        alert("Hay un problema");
+      }
+    });
+  }
+
+
+
+
+
+  /*FIN ecuperar el registro*/
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/59df0bc859.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
