@@ -49,7 +49,7 @@ const Cargarexcel = async (event) => {
   return true;;
 }
 
-const getUser = async () => {
+/* const getUser = async () => {
   const res = await fetch("obtener_datos.php");
   const json = await res.json();
   let template = ''
@@ -70,13 +70,59 @@ const getUser = async () => {
   }
   document.querySelector("#table_admin tbody").innerHTML = template;
 }
-getUser();
+getUser(); */
 
 
 
 /* Recuperar el registro*/
 
 /*======================== */
+
+let tabla1 = $("#table_admin").DataTable({
+  "ajax": {
+    url: "datos.php?accion=listar",
+    dataSrc: ""
+  },
+  "columns": [{
+    "data": "id"
+  },
+  {
+    "data": "nombre"
+  },
+  {
+    "data": "apellido"
+  },
+  {
+    "data": "correo"
+  },
+  {
+    "data": "redes"
+  },
+  {
+    "data": "puesto"
+  },
+  {
+    "data": "descripcion"
+  },
+  {
+    "data": null,
+    "orderable": false
+  },
+  {
+    "data": null,
+    "orderable": false
+  }
+  ],
+  "columnDefs": [{
+    targets: 7,
+    "defaultContent": "<button class='btn  btn-primary botonmodificar'>Modificar</button>",
+    data: null
+  }, {
+  targets: 8,
+    "defaultContent": "<button class='btn btn-secondary botonborrar'>Borrar</button>",
+    data: null
+  }],
+});
 $('#ConfirmarModificar').click(function () {
   $("#FormularioArticulo").modal('hide');
   let registro = recuperarDatosFormulario();
@@ -88,6 +134,14 @@ $('#table_admin tbody').on('click', 'button.botonmodificar', function () {
   $('#ConfirmarModificar').show();
   let registro = tabla1.row($(this).parents('tr')).data();
   recuperarRegistro(registro.id);
+});
+
+
+$('#table_admin tbody').on('click', 'button.botonborrar', function () {
+  if (confirm("¿Realmente quiere borrar el registro?")) {
+    let registro = tabla1.row($(this).parents('tr')).data();
+    borrarRegistro(registro.id);
+  }
 });
 
 /*============ === === === === */
@@ -115,7 +169,7 @@ function recuperarDatosFormulario() {
   return registro;
 }
 
-function recuperarRegistro(codigo) {
+function recuperarRegistro(id) {
   $.ajax({
     type: 'GET',
     url: 'datos.php?accion=consultar&id=' + id,
@@ -129,9 +183,6 @@ function recuperarRegistro(codigo) {
       $('#puesto').val(datos[0].puesto);
       $('#descripcion').val(datos[0].descripcion);
       $("#FormularioArticulo").modal('show');
-    /*  $('#Codigo').val(datos[0].codigo);
-      $('#Descripcion').val(datos[0].descripcion);
-      $('#Precio').val(datos[0].precio); */
     },
     error: function () {
       alert("Hay un problema");
@@ -154,13 +205,23 @@ function modificarRegistro(registro) {
 }
 
 
-
-
-
 /*FIN ecuperar el registro*/
 
-
-
+/* Borarr registro */
+function borrarRegistro(id) {
+  $.ajax({
+    type: 'GET',
+    url: 'datos.php?accion=borrar&id=' + id,
+    data: '',
+    success: function (msg) {
+      tabla1.ajax.reload();
+    },
+    error: function () {
+      alert("Hay un problema");
+    }
+  });
+}
+/* FIn borar registro */
 
 
 

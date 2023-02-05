@@ -1,16 +1,15 @@
 <?php
-/* header('Content-Type: application/json'); */
 require_once "conexion.php";
-/* $stmt = $conn->connect()->prepare($sql); */
+
 $conn = new Conexion();
 $pdo = $conn->connect();
 switch ($_GET['accion']) {
-  /* case 'listar':
-  $sql = $pdo->prepare("select codigo,descripcion,precio from articulos");
+   case 'listar':
+  $sql = $pdo->prepare("select id,nombre,apellido,correo,redes,puesto,descripcion from  integrantes");
   $sql->execute();
   $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
-  echo json_encode($resultado);
-  break;
+  echo json_encode($resultado);/* id,nombre,apellido,correo,redes,puesto,descripcion */
+  break;/*
   case 'agregar':
   $sql = $pdo->prepare("insert into articulos(descripcion,precio) values (:descripcion,:precio)");
   $resultado = $sql->execute(array(

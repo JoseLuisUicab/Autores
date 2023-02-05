@@ -13,7 +13,7 @@
 HEAD .ancho {
   max-width: 1200px;
   margin: auto;
-  border: 1px solid red;
+
 }
 body {
   font-family: helvetica;
@@ -411,7 +411,6 @@ body {
 /*Footer*/
 footer {
   width: 100%;
-  border: 2px solid green;
   margin: auto;
   display: flex;
   justify-content: space-between;

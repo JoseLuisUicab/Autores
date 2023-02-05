@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../Css/Destock.css">
   <link rel="stylesheet" href="../src/style.css">
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <link href="../DataTables/datatables.min.css" rel="stylesheet">
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!--   <meta http-equiv="refresh" content="2"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <title>Document</title>
 </head>
 
@@ -53,12 +53,11 @@
     </div>
     <br><br>
 
-    <div class="table-responsive text-center p-2">
+    <div class=" text-center p-2">
       <h1 class=" fw-bold fs-2 p-3">Lista de Integrantes</h1>
       <table class="table table-bordered" id="table_admin">
-
         <thead class="thead-dark">
-          <tr>
+          <tr style="  border:1px solid gold;">
             <th scope="col">ID</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
@@ -163,9 +162,11 @@
 
 
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-  <!--   <script src="../Scrip/Scrip.js"></script> -->
+  <script src="../DataTables/datatables.min.js"></script>
   <script src="../Scrip/Scrip.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+
+
   <script src="https://kit.fontawesome.com/59df0bc859.js" crossorigin="anonymous"></script>
 </body>
 

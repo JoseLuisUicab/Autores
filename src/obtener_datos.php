@@ -1,5 +1,5 @@
 <?php 
- require_once "conexion.php";
+/*  require_once "conexion.php";
 class Obetener{
   public function getUser(){
     $conn = new Conexion();
@@ -8,7 +8,7 @@ class Obetener{
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     echo json_encode($stmt->fetchAll());
   }
-}
-$get = new Obetener();
-return $get->getUser();
+} */
+/* $get = new Obetener();
+return $get->getUser(); */
 ?>
