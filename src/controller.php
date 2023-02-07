@@ -1,4 +1,3 @@
-
 <?php
  /*Verificacionde boton */
  if(!empty($_POST["btniniciar"])){
@@ -7,7 +6,7 @@
         } else {
         $usuario=$_POST["usuario"];
         $contrasenia=$_POST["contrasenia"];
-        $sql=$conexion->query(" select * from login where usuario='$usuario' and contrasenia='$contrasenia' ");
+        $sql=$conexion->query(" select * from usuarios where usuario='$usuario' and contrasenia='$contrasenia' ");
         if ($datos=$sql->fetch_object()) {
             header("Location:dashboard.php");
         } else {
