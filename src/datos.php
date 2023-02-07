@@ -1,6 +1,6 @@
 <?php
 require_once "conexion.php";
-
+header('Content-Type: application/json');
 $conn = new Conexion();
 $pdo = $conn->connect();
 switch ($_GET['accion']) {
@@ -30,7 +30,7 @@ switch ($_GET['accion']) {
     break;
 
   case 'consultar':
-    $sql = $pdo->prepare("select id,nombre,apellido,correo,redes,puesto,descripcion, from integrantes where id=:id");
+    $sql = $pdo->prepare("select id,nombre,apellido,correo,redes,puesto,descripcion from integrantes where id=:id");
     $sql->execute(array("id" => $_GET['id']));
     $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($resultado);
@@ -43,22 +43,22 @@ switch ($_GET['accion']) {
                                   correo=:correo,
                                   redes=:redes,
                                   puesto=:puesto,
-                                  descripcion=:descripcion,
+                                  descripcion=:descripcion
                                   
                                 where id=:id");
-    $resultado = $sql->execute(
-      array(
+    $resultado = $sql->execute(array(
         "nombre" => $_POST['nombre'],
         "apellido" => $_POST['apellido'],
         "correo" => $_POST['correo'],
         "redes" => $_POST['redes'],
         "puesto" => $_POST['puesto'],
         "descripcion" => $_POST['descripcion'],
-
         "id" => $_GET['id']
       )
     );
     echo json_encode($resultado);
+    
     break;
-}
+}  
+
 ?>

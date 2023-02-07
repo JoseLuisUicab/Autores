@@ -53,10 +53,10 @@
     </div>
     <br><br>
 
-    <div class="table table-striped table-bordered text-center container">
+    <div class="table-striped table-bordered text-center container ">
       <h1 class=" fw-bold fs-2 p-3">Lista de Integrantes</h1>
-      <table class="table table-bordered" id="table_admin">
-        <thead class="thead-dark">
+      <table class="table" id="table_admin">
+        <thead class="table-responsive">
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Nombre</th>
@@ -83,17 +83,17 @@
         <div class="modal-content">
           <div class="modal-header">
 
-            <button type="button" class="close" data-dismiss="modal">
-              <span aria-hidden="true">×</span>
+            <button type="button" class="btn-close" data-bs-dismiss="modal">
+              <span aria-hidden="true" class="bg-primary"></span>
             </button>
           </div>
           <div class="modal-body">
-            <input type="hidden" id="id">
+            <input type="hidden" id="ID">
             <!-- Nombre -->
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label>Nombre:</label>
-                <input type="text" id="nombre" class="form-control" placeholder="">
+                <input type="text" id="Nombre" name="nombre" class="form-control" placeholder="">
               </div>
             </div>
             <!--FIN Nombre -->
@@ -102,7 +102,7 @@
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label>Apellido:</label>
-                <input type="text" id="apellido" class="form-control" placeholder="">
+                <input type="text" id="Apellido" name="apellido" class="form-control" placeholder="">
               </div>
             </div>
             <!--Fin APellido  -->
@@ -111,7 +111,7 @@
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label>Correo:</label>
-                <input type="text" id="correo" class="form-control" placeholder="">
+                <input type="text" id="Correo" name="correo" class="form-control" placeholder="">
               </div>
             </div>
             <!--FIn correo  -->
@@ -120,7 +120,7 @@
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label>Redes:</label>
-                <input type="text" id="redes" class="form-control" placeholder="">
+                <input type="text" id="Redes" name="redes" class="form-control" placeholder="">
               </div>
             </div>
             <!--Fin Redes  -->
@@ -129,7 +129,7 @@
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label>Puesto:</label>
-                <input type="text" id="puesto" class="form-control" placeholder="">
+                <input type="text" id="Puesto" name="puesto" class="form-control" placeholder="">
               </div>
             </div>
             <!--Fin puesto  -->
@@ -138,18 +138,15 @@
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label>Descripcion:</label>
-                <textarea class="form-control" id="descripcion" rows="3"></textarea>
+                <textarea class="form-control" name="descripcion" id="Descripcion" rows="3"></textarea>
               </div>
             </div>
             <!--Fin Descripcion  -->
 
-
-
-
             <div class="modal-footer">
-              <button type="button" id="ConfirmarAgregar" class="btn btn-success">Agregar</button>
-              <button type="button" id="ConfirmarModificar" class="btn btn-success">Modificar</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" id="ConfirmarModificar" class="btn btn-primary">Modificar</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                aria-label="Close">Cancelar</button>
             </div>
           </div>
         </div>
@@ -167,6 +164,197 @@
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
   <script src="https://kit.fontawesome.com/59df0bc859.js" crossorigin="anonymous"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+
+    let tabla1 = $("#table_admin").DataTable({
+      "ajax": {
+        url: "datos.php?accion=listar",
+        dataSrc: ""
+      },
+      "columns": [{
+          "data": "id"
+        },
+        {
+          "data": "nombre"
+        },
+        {
+          "data": "apellido"
+        },
+        {
+          "data": "correo"
+        },
+        {
+          "data": "redes"
+        },
+        {
+          "data": "puesto"
+        },
+        {
+          "data": "descripcion"
+        },
+        {
+          "data": null,
+          "orderable": false
+        },
+        {
+          "data": null,
+          "orderable": false
+        }
+      ],
+      "columnDefs": [{
+        targets: 7,
+        "defaultContent": "<button class='btn  btn-primary botonmodificar'>Modificar</button>",
+        data: null
+      }, {
+        targets: 8,
+        "defaultContent": "<button class='btn btn-secondary botonborrar'>Borrar</button>",
+        data: null
+      }],
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
+      },
+    });
+    $('#ConfirmarModificar').click(function() {
+      $("#FormularioArticulo").modal('hide');
+      let registro = recuperarDatosFormulario();
+      modificarRegistro(registro);
+    });
+
+    $('#table_admin tbody').on('click', 'button.botonmodificar', function() {
+      $('#ConfirmarAgregar').hide();
+      $('#ConfirmarModificar').show();
+      let registro = tabla1.row($(this).parents('tr')).data();
+      recuperarRegistro(registro.id);
+    });
+
+
+    $('#table_admin tbody').on('click', 'button.botonborrar', function() {
+      Swal.fire({
+        title: 'Borrar',
+        text: "seguro que deseas elimnarlo!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#740101',
+        cancelButtonColor: '#DFBA49',
+        confirmButtonText: 'Si borrar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'registro borrado exitosamente',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          let registro = tabla1.row($(this).parents('tr')).data();
+          borrarRegistro(registro.id)
+        }
+      })
+
+      /* if (confirm("¿Realmente quiere borrar el registro?")) {
+        let registro = tabla1.row($(this).parents('tr')).data();
+        borrarRegistro(registro.id);
+      } */
+    });
+
+    /*============ === === === === */
+    /*   function limpiarFormulario() {
+        $('#id').val('');
+        $('#nombre').val('');
+        $('#apellido').val('');
+        $('#correo').val('');
+        $('#redes').val('');
+        $('#puesto').val('');
+        $('#descripcion').val('');
+
+      } */
+
+    function recuperarDatosFormulario() {
+      let registro = {
+        id: $('#ID').val(),
+        nombre: $('#Nombre').val(),
+        apellido: $('#Apellido').val(),
+        correo: $('#Correo').val(),
+        redes: $('#Redes').val(),
+        puesto: $('#Puesto').val(),
+        descripcion: $('#Descripcion').val()
+      };
+      return registro;
+    }
+
+
+    /* Borarr registro */
+    function borrarRegistro(id) {
+      $.ajax({
+        type: 'GET',
+        url: 'datos.php?accion=borrar&id=' + id,
+        data: '',
+        success: function(msg) {
+          tabla1.ajax.reload();
+        },
+        error: function() {
+          alert("Hay un problema");
+        }
+      });
+    }
+
+    function recuperarRegistro(id) {
+      $.ajax({
+        type: 'GET',
+        url: 'datos.php?accion=consultar&id=' + id,
+        data: '',
+        success: function(datos) {
+          $('#ID').val(datos[0].id);
+          $('#Nombre').val(datos[0].nombre);
+          $('#Apellido').val(datos[0].apellido);
+          $('#Correo').val(datos[0].correo);
+          $('#Redes').val(datos[0].redes);
+          $('#Puesto').val(datos[0].puesto);
+          $('#Descripcion').val(datos[0].descripcion);
+          $("#FormularioArticulo").modal('show');
+        },
+        error: function() {
+          alert("Hay un problema");
+        }
+      });
+    }
+
+    function modificarRegistro(registro) {
+      $.ajax({
+        type: 'POST',
+        url: 'datos.php?accion=modificar&id=' + registro.id,
+        data: registro,
+        success: function(msg) {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Registro Mdificado',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          tabla1.ajax.reload();
+        },
+        error: function() {
+          alert("Hay un problema");
+          print_r("mod", modificarRegistro());
+
+        }
+      });
+
+    }
+
+
+
+
+
+    /*FIN ecuperar el registro*/
+
+
+
+
+  });
+  </script>
 </body>
 
 </html>
