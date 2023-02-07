@@ -9,16 +9,7 @@ switch ($_GET['accion']) {
   $sql->execute();
   $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   echo json_encode($resultado);/* id,nombre,apellido,correo,redes,puesto,descripcion */
-  break;/*
-  case 'agregar':
-  $sql = $pdo->prepare("insert into articulos(descripcion,precio) values (:descripcion,:precio)");
-  $resultado = $sql->execute(array(
-  "descripcion" => $_POST['descripcion'],
-  "precio" => $_POST['precio']
-  ));
-  echo json_encode($resultado);
   break;
-  */
   case 'borrar':
     $sql = $pdo->prepare("delete from integrantes where id=:id");
     $resultado = $sql->execute(
