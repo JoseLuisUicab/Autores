@@ -54,7 +54,7 @@
     <br><br>
     <div class="table-striped table-bordered text-center">
       <h1 class=" fw-bold fs-2 p-3">Lista de Integrantes</h1>
-      <table class="table table-bordered table-striped" id="table_admin">
+      <table class="table" id="table_admin">
         <thead class="table-responsive">
           <tr>
             <th scope="col">ID</th>
@@ -147,14 +147,7 @@
               <button type="button" id="ConfirmarModificar" class="btn btn-primary">Modificar</button>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                 aria-label="Close">Cancelar</button>
-              <label class="">Seleccionar imagen del integrante</label>
-              <input type="file" name="user_image" id="user_image" class="form-control">
-              <span id="user_uploaded_image"></span>
             </div>
-
-            <!--  <div class="modal-footer text-start ">
-
-            </div> -->
           </div>
         </div>
       </div>
@@ -203,6 +196,7 @@
         {
           "data": "foto"
         },
+
         {
           "data": null,
           "orderable": false
@@ -214,11 +208,11 @@
 
       ],
       "columnDefs": [{
-        targets: 8,
+        targets: 7,
         "defaultContent": "<button class='btn  btn-primary botonmodificar'>Modificar</button>",
         data: null
       }, {
-        targets: 9,
+        targets: 8,
         "defaultContent": "<button class='btn btn-secondary botonborrar'>Borrar</button>",
         data: null
       }],
@@ -369,3 +363,4 @@
 </body>
 
 </html>
+<!-- composer require phpoffice/phpspreadsheet --ignore-platform-req=ext-gd -->

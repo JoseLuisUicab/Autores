@@ -5,7 +5,7 @@ $conn = new Conexion();
 $pdo = $conn->connect();
 switch ($_GET['accion']) {
    case 'listar':
-  $sql = $pdo->prepare("select id,nombre,apellido,correo,redes,puesto,descripcion,foto from  integrantes");
+  $sql = $pdo->prepare("select id,nombre,apellido,correo,redes,puesto,descripcion from  integrantes");
   $sql->execute();
   $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   echo json_encode($resultado);/* id,nombre,apellido,correo,redes,puesto,descripcion */
@@ -21,7 +21,7 @@ switch ($_GET['accion']) {
     break;
 
   case 'consultar':
-    $sql = $pdo->prepare("select id,nombre,apellido,correo,redes,puesto,descripcion,foto from integrantes where id=:id");
+    $sql = $pdo->prepare("select id,nombre,apellido,correo,redes,puesto,descripcion from integrantes where id=:id");
     $sql->execute(array("id" => $_GET['id']));
     $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($resultado);
@@ -34,8 +34,8 @@ switch ($_GET['accion']) {
                                   correo=:correo,
                                   redes=:redes,
                                   puesto=:puesto,
-                                  descripcion=:descripcion,
-                                  foto=:foto
+                                  descripcion=:descripcion
+                              
                                   
                                 where id=:id");
     $resultado = $sql->execute(array(
@@ -45,7 +45,7 @@ switch ($_GET['accion']) {
         "redes" => $_POST['redes'],
         "puesto" => $_POST['puesto'],
         "descripcion" => $_POST['descripcion'],
-        "foto"=>$_POST['foto'],
+        
         "id" => $_GET['id']
       )
     );

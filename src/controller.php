@@ -6,7 +6,7 @@
         } else {
         $usuario=$_POST["usuario"];
         $contrasenia=$_POST["contrasenia"];
-        $sql=$conexion->query(" select * from usuarios where nombre='$usuario' and clave='$contrasenia' ");
+        $sql=$conectar->query("select * from usuarios where nombre='$usuario' and clave='$contrasenia'");
         if ($datos=$sql->fetch_object()) {
             header("Location:dashboard.php");
         } else {
