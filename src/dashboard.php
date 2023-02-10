@@ -208,11 +208,11 @@
 
       ],
       "columnDefs": [{
-        targets: 7,
+        targets: 8,
         "defaultContent": "<button class='btn  btn-primary botonmodificar'>Modificar</button>",
         data: null
       }, {
-        targets: 8,
+        targets: 9,
         "defaultContent": "<button class='btn btn-secondary botonborrar'>Borrar</button>",
         data: null
       }],
@@ -317,6 +317,7 @@
           $('#Redes').val(datos[0].redes);
           $('#Puesto').val(datos[0].puesto);
           $('#Descripcion').val(datos[0].descripcion);
+
           $("#FormularioArticulo").modal('show');
         },
         error: function() {
