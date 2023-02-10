@@ -26,9 +26,9 @@
 
 
     <article class="leader">
-      
 
-     <!--  <div class="persona">
+
+      <!--  <div class="persona">
         <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
         <h3>Senior Front-End</h3>
         <br>
@@ -138,17 +138,17 @@
 
 
       <?php
-    include "conexiontabla_integrantes.php";
+    include "conexion_d.php";
      //asemos la consulta de todos los usuarios de la tabla uausrios
      $todos_productos= " SELECT * FROM integrantes ORDER BY id ASC";
      $resultado= mysqli_query($conectar, $todos_productos);
      while($row = mysqli_fetch_assoc($resultado))
     { 
-      ?> 
-      
-        <!--------------------------------->
+      ?>
 
-        <div class="persona">
+      <!--------------------------------->
+
+      <div class="persona">
         <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
         <h3><?php echo $row["puesto"];?></h3><!-- puesto -->
         <br>
@@ -158,11 +158,11 @@
           <p><?php echo $row["descripcion"];?></p><!-- descripciones -->
           <div class="iconos">
 
-           <a href="<?php echo $row["redes"];?>"> <i class="fa-brands fa-facebook"></i></a>
+            <a href="<?php echo $row["redes"];?>"> <i class="fa-brands fa-facebook"></i></a>
             <i class="fab fa-linkedin-in"></i>
             <a href="<?php echo $row["correo"];?>"> <i class="fas fa-envelope"></i></a>
           </div>
-        
+
         </div>
       </div>
 
@@ -170,15 +170,15 @@
 
 
 
-          <!-- <div class="divproductos  borde">
+      <!-- <div class="divproductos  borde">
             <img src="<?php echo $row['ruta_foto']; ?>" alt="" class="imgwidth" >
             <p class="nombreproducto"><?php echo $row["producto"];?></p>
             <p class="preciopro">Precio: <span class="rojo">$ <?php echo $row["precio"]; ?></span> </p>
             <p class="descripcionpro"><span class="negritas">Descripcion:</span><br><?php echo $row['descripcion']; ?></p>
             
             </div> -->
-      
-       <?php
+
+      <?php
     }
     
         mysqli_free_result($resultado);// deja de buscar datos en la base de datos una ves mostrados todo de la tabla

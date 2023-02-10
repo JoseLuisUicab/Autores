@@ -52,10 +52,9 @@
 
     </div>
     <br><br>
-
-    <div class="table-striped table-bordered text-center container ">
+    <div class="table-striped table-bordered text-center">
       <h1 class=" fw-bold fs-2 p-3">Lista de Integrantes</h1>
-      <table class="table" id="table_admin">
+      <table class="table table-bordered table-striped" id="table_admin">
         <thead class="table-responsive">
           <tr>
             <th scope="col">ID</th>
@@ -65,6 +64,7 @@
             <th scope="col">redes</th>
             <th scope="col">Puesto</th>
             <th scope="col">Descripcion</th>
+            <th scope="col">foto</th>
             <th scope="col">Modificar</th>
             <th scope="col">Borrar</th>
           </tr>
@@ -147,7 +147,14 @@
               <button type="button" id="ConfirmarModificar" class="btn btn-primary">Modificar</button>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                 aria-label="Close">Cancelar</button>
+              <label class="">Seleccionar imagen del integrante</label>
+              <input type="file" name="user_image" id="user_image" class="form-control">
+              <span id="user_uploaded_image"></span>
             </div>
+
+            <!--  <div class="modal-footer text-start ">
+
+            </div> -->
           </div>
         </div>
       </div>
@@ -194,20 +201,24 @@
           "data": "descripcion"
         },
         {
+          "data": "foto"
+        },
+        {
           "data": null,
           "orderable": false
         },
         {
           "data": null,
           "orderable": false
-        }
+        },
+
       ],
       "columnDefs": [{
-        targets: 7,
+        targets: 8,
         "defaultContent": "<button class='btn  btn-primary botonmodificar'>Modificar</button>",
         data: null
       }, {
-        targets: 8,
+        targets: 9,
         "defaultContent": "<button class='btn btn-secondary botonborrar'>Borrar</button>",
         data: null
       }],
