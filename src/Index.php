@@ -25,7 +25,7 @@
   <Section class="Parte1 " style="background: #F0F0F0;">
 
 
-    <article class=" leader" ">
+    <article class=" leader">
       <?php
     include "conexion_d.php";
      //asemos la consulta de todos los usuarios de la tabla uausrios
@@ -38,21 +38,21 @@
       <!--------------------------------->
 
       <div class=" persona" style="background: #FFFFFF">
-      <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
-      <h3><?php echo $row["puesto"];?></h3><!-- puesto -->
-      <br>
-      <p><?php echo $row["nombre"];?>,<?php echo $row["apellido"];?></p><!-- nombre y apellido -->
-      <div class="aportaciones">
-        <h3>Aportaciones</h3>
-        <p><?php echo $row["descripcion"];?></p><!-- descripciones -->
-        <div class="iconos">
+        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
+        <h3><?php echo $row["puesto"];?></h3><!-- puesto -->
+        <br>
+        <p><?php echo $row["nombre"];?>,<?php echo $row["apellido"];?></p><!-- nombre y apellido -->
+        <div class="aportaciones">
+          <h3>Aportaciones</h3>
+          <p><?php echo $row["descripcion"];?></p><!-- descripciones -->
+          <div class="iconos">
 
-          <a href="<?php echo $row["redes"];?>"> <i class="fa-brands fa-facebook"></i></a>
-          <i class="fab fa-linkedin-in"></i>
-          <a href="<?php echo $row["correo"];?>"> <i class="fas fa-envelope"></i></a>
+            <a href="<?php echo $row["redes"];?>"> <i class="fa-brands fa-facebook"></i></a>
+            <i class="fab fa-linkedin-in"></i>
+            <a href="<?php echo $row["correo"];?>"> <i class="fas fa-envelope"></i></a>
+          </div>
+
         </div>
-
-      </div>
       </div>
 
 

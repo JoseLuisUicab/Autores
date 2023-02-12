@@ -52,10 +52,10 @@
 
     </div>
     <br><br>
-    <div class="text-center">
+    <div class="text-center container-fluid">
       <h1 class=" fw-bold fs-2 p-3">Lista de Integrantes</h1>
-      <table class="table table-striped table-bordered" id="table_admin">
-        <thead class="table-responsive">
+      <table class="table table-striped table-bordered table-responsive  " id="table_admin">
+        <thead class="">
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Nombre</th>
@@ -63,13 +63,13 @@
             <th scope="col">Correo</th>
             <th scope="col">redes</th>
             <th scope="col">Puesto</th>
-            <th scope="col" width="20%">Descripcion</th>
-            <th scope="col" width="5%">foto</th>
+            <th scope="col" width="17%">Descripcion</th>
+            <th scope="col" width="2%">foto</th>
             <th scope="col" width="5%">Modificar</th>
             <th scope="col" width="5%">Borrar</th>
           </tr>
         </thead>
-        <tbody class="align-items-center">
+        <tbody class="text-break overflow-hidden align-middle">
 
         </tbody>
       </table>
@@ -78,7 +78,7 @@
 
 
     <!-- MODAL PARA MODIFICAR -->
-    <div class="modal fade" id="FormularioArticulo" tabindex="-1" role="dialog">
+    <div class=" modal fade" id="FormularioArticulo" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -138,7 +138,7 @@
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label>Descripcion:</label>
-                <textarea class="form-control" name="descripcion" id="Descripcion" rows="3"></textarea>
+                <textarea class=" form-control" name="descripcion" id="Descripcion" rows="3"></textarea>
               </div>
             </div>
             <!--Fin Descripcion  -->
@@ -147,6 +147,8 @@
               <button type="button" id="ConfirmarModificar" class="btn btn-primary">Modificar</button>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                 aria-label="Close">Cancelar</button>
+
+
             </div>
           </div>
         </div>
@@ -175,8 +177,7 @@
       },
       "columns": [{
           "data": "id",
-          "className": "text-center",
-          "width": "2%"
+          "className": "text-center"
 
         },
         {
@@ -215,7 +216,7 @@
 
       "columnDefs": [{
         targets: 7,
-        "defaultContent": "<button class='btn  btn-primary botonfoto'><i class='fa-solid fa-camera'></i></button>",
+        "defaultContent": "<button class='btn btn-secondary botonfoto'><i class='fa-solid fa-camera'></i></button>",
         sortable: false,
         data: null
       }, {
@@ -296,6 +297,7 @@
         redes: $('#Redes').val(),
         puesto: $('#Puesto').val(),
         descripcion: $('#Descripcion').val()
+
       };
       return registro;
     }
@@ -329,7 +331,6 @@
           $('#Redes').val(datos[0].redes);
           $('#Puesto').val(datos[0].puesto);
           $('#Descripcion').val(datos[0].descripcion);
-
           $("#FormularioArticulo").modal('show');
         },
         error: function() {
