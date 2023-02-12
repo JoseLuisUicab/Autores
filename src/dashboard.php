@@ -52,9 +52,9 @@
 
     </div>
     <br><br>
-    <div class="table-striped table-bordered text-center">
+    <div class="text-center">
       <h1 class=" fw-bold fs-2 p-3">Lista de Integrantes</h1>
-      <table class="table" id="table_admin">
+      <table class="table table-striped table-bordered" id="table_admin">
         <thead class="table-responsive">
           <tr>
             <th scope="col">ID</th>
@@ -63,13 +63,13 @@
             <th scope="col">Correo</th>
             <th scope="col">redes</th>
             <th scope="col">Puesto</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">foto</th>
-            <th scope="col">Modificar</th>
-            <th scope="col">Borrar</th>
+            <th scope="col" width="20%">Descripcion</th>
+            <th scope="col" width="5%">foto</th>
+            <th scope="col" width="5%">Modificar</th>
+            <th scope="col" width="5%">Borrar</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="align-items-center">
 
         </tbody>
       </table>
@@ -168,12 +168,16 @@
   document.addEventListener("DOMContentLoaded", function() {
 
     let tabla1 = $("#table_admin").DataTable({
+      ordering: false,
       "ajax": {
         url: "datos.php?accion=listar",
         dataSrc: ""
       },
       "columns": [{
-          "data": "id"
+          "data": "id",
+          "className": "text-center",
+          "width": "2%"
+
         },
         {
           "data": "nombre"
@@ -206,16 +210,24 @@
           "orderable": false
         },
 
+
       ],
+
       "columnDefs": [{
+        targets: 7,
+        "defaultContent": "<button class='btn  btn-primary botonfoto'><i class='fa-solid fa-camera'></i></button>",
+        sortable: false,
+        data: null
+      }, {
         targets: 8,
-        "defaultContent": "<button class='btn  btn-primary botonmodificar'>Modificar</button>",
+        "defaultContent": "<button class='btn  btn-primary botonmodificar'><i class='fa-solid fa-pen-to-square'></i></button>",
         data: null
       }, {
         targets: 9,
-        "defaultContent": "<button class='btn btn-secondary botonborrar'>Borrar</button>",
+        "defaultContent": "<button class='btn btn-secondary botonborrar'><i class='fa-solid fa-trash-can'></i></button>",
         data: null
       }],
+
       "language": {
         "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
       },
@@ -349,16 +361,6 @@
       });
 
     }
-
-
-
-
-
-    /*FIN ecuperar el registro*/
-
-
-
-
   });
   </script>
 </body>
