@@ -2,7 +2,7 @@ document.getElementById("txt_archivo").addEventListener("change", () => {
   var filename = document.getElementById("txt_archivo").value;
   var idxDot = filename.indexOf(".") + 1;
   var extFile = filename.substring(idxDot, filename.length).toLowerCase();
-  if (extFile == "xlsx" || extFile == "csv") {
+  if (extFile == "xlsx") {
     return;
   } else {
     Swal.fire("Mensaje De Error", "Extensión no permitida: " + ext + "", "error");
