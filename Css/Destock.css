@@ -255,26 +255,28 @@ body {
   border: 2px solid lightsalmon;
   width: 70%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;/* ests cambio no me hizo caso */
   margin: auto;
   margin-top: 10px;
 }
-.iconos2 {
+.iconos a i {
+  font-size: 40px;
+  z-index: 4;
+  color:white; /* ests cambio no me hizo caso */
+}
+/* .iconos2 {
   border: 2px solid lightsalmon;
   width: 70%;
   display: flex;
   justify-content: space-between;
   margin: auto;
-  margin-top: 10px;
-}
-.iconos i {
+  margin-top: 10px; 
+}*/
+
+/* .iconos2 i {
   font-size: 40px;
   z-index: 4;
-}
-.iconos2 i {
-  font-size: 40px;
-  z-index: 4;
-}
+} */
 .aportaciones h3 {
   margin-top: 22%;
   margin-bottom: 7px;
