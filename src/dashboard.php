@@ -54,7 +54,7 @@
     <br><br>
     <div class="text-center container-fluid">
       <div class="">
-        <button class="btn btn-primary"></button>
+        <button class="btn btn-primary boton_borrar">Borrar todo los Registros</button>
       </div>
       <h1 class=" fw-bold fs-2 p-3">Lista de Integrantes</h1>
       <table class="table table-striped table-bordered table-responsive  " id="table_admin">
