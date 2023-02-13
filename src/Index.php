@@ -22,125 +22,14 @@
   </Section>
   <h2 class="teamle" id="teamleader">TEAM LEADERS</h2>
 
-  <Section class="Parte1">
+  <Section class="Parte1 " style="background: #F0F0F0;">
 
 
-    <article class="leader">
-
-
-      <!--  <div class="persona">
-        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
-        <h3>Senior Front-End</h3>
-        <br>
-        <p>ING.William Gongora Bojorquez</p>
-        <div class="aportaciones">
-          <h3>Aportaciones</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, necessitatibus?dasdasfd
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          <div class="iconos">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fab fa-linkedin-in"></i>
-            <i class="fas fa-envelope"></i>
-          </div>
-          </p>
-        </div>
-      </div>
-
-      <div class="persona">
-        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
-        <h3>Senior Front-End</h3>
-        <br>
-        <p>ING.William Gongora Bojorquez</p>
-        <div class="aportaciones">
-          <h3>Aportaciones</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, necessitatibus?dasdasfd
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          <div class="iconos">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fab fa-linkedin-in"></i>
-            <i class="fas fa-envelope"></i>
-          </div>
-          </p>
-        </div>
-      </div>
-
-      <div class="persona">
-        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
-        <h3>Senior Front-End</h3>
-        <br>
-        <p>ING.William Gongora Bojorquez</p>
-        <div class="aportaciones">
-          <h3>Aportaciones</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, necessitatibus?dasdasfd
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          <div class="iconos">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fab fa-linkedin-in"></i>
-            <i class="fas fa-envelope"></i>
-          </div>
-          </p>
-        </div>
-      </div>
-
-      <div class="persona">
-        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
-        <h3>Senior Front-End</h3>
-        <br>
-        <p>ING.William Gongora Bojorquez</p>
-        <div class="aportaciones">
-          <h3>Aportaciones</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, necessitatibus?dasdasfd
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          <div class="iconos">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fab fa-linkedin-in"></i>
-            <i class="fas fa-envelope"></i>
-          </div>
-          </p>
-        </div>
-      </div>
-
-      <div class="persona">
-        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
-        <h3>Senior Front-End</h3>
-        <br>
-        <p>ING.William Gongora Bojorquez</p>
-        <div class="aportaciones">
-          <h3>Aportaciones</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, necessitatibus?dasdasfd
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          <div class="iconos">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fab fa-linkedin-in"></i>
-            <i class="fas fa-envelope"></i>
-          </div>
-          </p>
-        </div>
-      </div>
-
-      <div class="persona">
-        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
-        <h3>Senior Front-End</h3>
-        <br>
-        <p>ING.William Gongora Bojorquez</p>
-        <div class="aportaciones">
-          <h3>Aportaciones</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, necessitatibus?dasdasfd
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          <div class="iconos">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fab fa-linkedin-in"></i>
-            <i class="fas fa-envelope"></i>
-          </div>
-          </p>
-        </div>
-      </div> -->
-
-
+    <article class=" leader">
       <?php
     include "conexion_d.php";
      //asemos la consulta de todos los usuarios de la tabla uausrios
-     $todos_productos= " SELECT * FROM integrantes where (puesto = 'senior') ORDER BY id ASC";
+     $todos_productos= " SELECT * FROM integrantes ORDER BY id ASC";
      $resultado= mysqli_query($conectar, $todos_productos);
      while($row = mysqli_fetch_assoc($resultado))
     { 
@@ -149,6 +38,50 @@
       <!--------------------------------->
 
       <div class=" persona" style="background: #FFFFFF">
+        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
+        <h3><?php echo $row["puesto"];?></h3><!-- puesto -->
+        <br>
+        <p><?php echo $row["nombre"];?>,<?php echo $row["apellido"];?></p><!-- nombre y apellido -->
+        <div class="aportaciones">
+          <h3>Aportaciones</h3>
+          <p><?php echo $row["descripcion"];?></p><!-- descripciones -->
+          <div class="iconos">
+
+            <a href="<?php echo $row["redes"];?>"> <i class="fa-brands fa-facebook"></i></a>
+            <i class="fab fa-linkedin-in"></i>
+            <a href="<?php echo $row["correo"];?>"> <i class="fas fa-envelope"></i></a>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+      <!-- <div class="divproductos  borde">
+            <img src="<?php echo $row['ruta_foto']; ?>" alt="" class="imgwidth" >
+            <p class="nombreproducto"><?php echo $row["producto"];?></p>
+            <p class="preciopro">Precio: <span class="rojo">$ <?php echo $row["precio"]; ?></span> </p>
+            <p class="descripcionpro"><span class="negritas">Descripcion:</span><br><?php echo $row['descripcion']; ?></p>
+            
+            </div> -->
+
+      <?php
+    }
+    
+        mysqli_free_result($resultado);// deja de buscar datos en la base de datos una ves mostrados todo de la tabla
+     
+        ?>
+    </article>
+
+
+
+  </Section>
+  <h2 class="teamle" id="Desarrolladores">Desarrolladores</h2>
+  <Section class="Parte2">
+    <article class="leader2">
+      <div class="persona2">
         <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
         <h3>Senior Front-End</h3>
         <br>
@@ -166,6 +99,131 @@
         </div>
       </div>
 
+      <div class="persona2">
+        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
+        <h3>Senior Front-End</h3>
+        <br>
+        <p>ING.William Gongora Bojorquez</p>
+        <div class="aportaciones2">
+          <h3>Aportaciones</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, necessitatibus?dasdasfd
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <div class="iconos2">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fas fa-envelope"></i>
+          </div>
+          </p>
+        </div>
+      </div>
+
+      <div class="persona2">
+        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
+        <h3>Senior Front-End</h3>
+        <br>
+        <p>ING.William Gongora Bojorquez</p>
+        <div class="aportaciones2">
+          <h3>Aportaciones</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, necessitatibus?dasdasfd
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <div class="iconos2">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fas fa-envelope"></i>
+          </div>
+          </p>
+        </div>
+      </div>
+
+      <div class="persona2">
+        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
+        <h3>Senior Front-End</h3>
+        <br>
+        <p>ING.William Gongora Bojorquez</p>
+        <div class="aportaciones2">
+          <h3>Aportaciones</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, necessitatibus?dasdasfd
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <div class="iconos2">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fas fa-envelope"></i>
+          </div>
+          </p>
+        </div>
+      </div>
+
+      <div class="persona2">
+        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
+        <h3>Senior Front-End</h3>
+        <br>
+        <p>ING.William Gongora Bojorquez</p>
+        <div class="aportaciones2">
+          <h3>Aportaciones</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, necessitatibus?dasdasfd
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <div class="iconos2">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fas fa-envelope"></i>
+          </div>
+          </p>
+        </div>
+      </div>
+
+      <div class="persona2">
+        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
+        <h3>Senior Front-End</h3>
+        <br>
+        <p>ING.William Gongora Bojorquez</p>
+        <div class="aportaciones2">
+          <h3>Aportaciones</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, necessitatibus?dasdasfd
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <div class="iconos2">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fas fa-envelope"></i>
+          </div>
+          </p>
+        </div>
+      </div>
+
+      <div class="persona2">
+        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
+        <h3>Senior Front-End</h3>
+        <br>
+        <p>ING.William Gongora Bojorquez</p>
+        <div class="aportaciones2">
+          <h3>Aportaciones</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, necessitatibus?dasdasfd
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <div class="iconos2">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fas fa-envelope"></i>
+          </div>
+          </p>
+        </div>
+      </div>
+
+      <div class="persona2">
+        <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
+        <h3>Senior Front-End</h3>
+        <br>
+        <p>ING.William Gongora Bojorquez</p>
+        <div class="aportaciones2">
+          <h3>Aportaciones</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, necessitatibus?dasdasfd
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <div class="iconos2">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fas fa-envelope"></i>
+          </div>
+          </p>
+        </div>
+      </div>
     </article>
 
   </Section>
