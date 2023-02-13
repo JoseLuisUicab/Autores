@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="src/style.css">
   <link rel="stylesheet" href="../Css/Destock.css">
+  <link rel="stylesheet" href="../Css/Movil.css">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="../Scrip/Scrip2.js"></script>
   <script src='https://kit.fontawesome.com/2ee0245f3d.js' crossorigin='anonymous'></script>
@@ -38,17 +39,19 @@
       <!--------------------------------->
 
       <div class=" persona" style="background: #FFFFFF">
+      <p class="TITLE"><?php echo $row["nombre"];?>,<?php echo $row["apellido"];?></p><!-- nombre y apellido -->
         <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
         <h3><?php echo $row["puesto"];?></h3><!-- puesto -->
         <br>
-        <p><?php echo $row["nombre"];?>,<?php echo $row["apellido"];?></p><!-- nombre y apellido -->
+        <p class="TITLE2"><?php echo $row["nombre"];?>,<?php echo $row["apellido"];?></p><!-- nombre y apellido -->
         <div class="aportaciones">
+          <br>
           <h3>Aportaciones</h3>
           <p><?php echo $row["descripcion"];?></p><!-- descripciones -->
           <div class="iconos">
 
-            <a href="<?php echo $row["redes"];?>"> <i class="fa-brands fa-facebook"></i></a>
-            <i class="fab fa-linkedin-in"></i>
+            <a href="<?php echo $row["redes"];?>"><i class="fab fa-linkedin-in"></i> </a>
+            <a href="<?php echo $row["redes"];?>"><i class="fa-brands fa-github"></i></i> </a>
             <a href="<?php echo $row["correo"];?>"> <i class="fas fa-envelope"></i></a>
           </div>
 
@@ -103,11 +106,9 @@
           <p><?php echo $row["descripcion"];?></p><!-- descripciones -->
           <div class="iconos">
 
-            <a href="<?php echo $row["correo"];?>"> <i class="fab fa-linkedin-in"></i></a>
-            <!-- cambir al nombre del campo de latbla, quitar correo y poner linkedin -->
-
-            <a href="<?php echo $row["redes"];?>"> <i class="fa-brands fa-github"></i></a>
-            <!-- cambir al nombre del campo de latbla, quitar redes y poner github -->
+          <a href="<?php echo $row["redes"];?>"><i class="fab fa-linkedin-in"></i> </a>
+            <a href="<?php echo $row["redes"];?>"><i class="fa-brands fa-github"></i></i> </a>
+            <a href="<?php echo $row["correo"];?>"> <i class="fas fa-envelope"></i></a>
           </div>
 
         </div>

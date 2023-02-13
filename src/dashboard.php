@@ -57,7 +57,7 @@
         <button class="btn btn-primary"></button>
       </div>
       <h1 class=" fw-bold fs-2 p-3">Lista de Integrantes</h1>
-      <table class="table table-striped table-bordered table-responsive  " id="table_admin">
+      <table class="table table-striped table-bordered table-responsive" id="table_admin">
         <thead class="">
           <tr>
             <th scope="col">ID</th>
