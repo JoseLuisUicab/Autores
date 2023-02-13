@@ -83,7 +83,7 @@
     <article class="leader2">
 
       <?php
-    include "conexiontabla_integrantes.php";
+    include "conexion_d.php";
      //asemos la consulta de todos los usuarios de la tabla uausrios
      $todos_productos= " SELECT * FROM integrantes where (puesto = 'junior') ORDER BY id ASC";
      $resultado= mysqli_query($conectar, $todos_productos);
