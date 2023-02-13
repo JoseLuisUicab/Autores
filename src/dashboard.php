@@ -87,7 +87,7 @@
               <span aria-hidden="true" class="bg-primary"></span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" style="  border:1px solid blue;">
             <input type="hidden" id="ID">
             <!-- Nombre -->
             <div class="form-row">
@@ -148,8 +148,14 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                 aria-label="Close">Cancelar</button>
 
-
+              <div class="w-100">
+                <label class="p-1 fw-bold">Seleccionar foto del participante</label>
+                <input type="file" name="user_image" id="user_image" class="form-control">
+                <span id="user_uploaded_image"></span>
+              </div>
             </div>
+
+
           </div>
         </div>
       </div>
@@ -241,6 +247,13 @@
 
     $('#table_admin tbody').on('click', 'button.botonmodificar', function() {
       $('#ConfirmarAgregar').hide();
+      $('#ConfirmarModificar').show();
+      let registro = tabla1.row($(this).parents('tr')).data();
+      recuperarRegistro(registro.id);
+    });
+
+    $('#table_admin tbody').on('click', 'button.botonfoto', function() {
+      /* $('#ConfirmarAgregar').hide(); */
       $('#ConfirmarModificar').show();
       let registro = tabla1.row($(this).parents('tr')).data();
       recuperarRegistro(registro.id);
