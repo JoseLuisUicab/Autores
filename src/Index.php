@@ -55,17 +55,10 @@
         </div>
       </div>
 
-
-
-
-
-      <!-- <div class="divproductos  borde">
-            <img src="<?php echo $row['ruta_foto']; ?>" alt="" class="imgwidth" >
-            <p class="nombreproducto"><?php echo $row["producto"];?></p>
-            <p class="preciopro">Precio: <span class="rojo">$ <?php echo $row["precio"]; ?></span> </p>
-            <p class="descripcionpro"><span class="negritas">Descripcion:</span><br><?php echo $row['descripcion']; ?></p>
-            
-            </div> -->
+      <?php echo $row['ruta_foto']; ?>
+      <?php echo $row["producto"];?>
+      <?php echo $row["precio"]; ?>
+      <?php echo $row['descripcion']; ?>
 
       <?php
     }
