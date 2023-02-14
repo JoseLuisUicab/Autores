@@ -29,7 +29,7 @@ $cantidad = $spreadsheet->getActiveSheet()->toArray();
 foreach ($cantidad as $row){
   if($row[0]!=''){
     $conn = new Conexion();
-     $sql = "INSERT INTO integrantes VALUES(:id,:nombre,:apellido,:correo,:redes,:puesto,:descripcion)";
+    $sql = "INSERT INTO integrantes VALUES(:id,:nombre,:apellido,:correo,:redes,:puesto,:descripcion)";
     $stmt = $conn->connect()->prepare($sql);
     $stmt->bindValue(":id",$row[0]);
     $stmt->bindValue(":nombre",$row[1]);

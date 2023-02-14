@@ -53,9 +53,12 @@
     </div>
     <br><br>
     <div class="text-center container-fluid">
-      <div class="">
-        <button class="btn btn-primary boton_borrar">Borrar todo los Registros</button>
+      <!-- <form action="elimina.php"> -->
+      <div class="d-flex justify-content-between align-items-end">
+        <button class="btn btn-secondary text-primary fw-bold fs-5" id="borrar_b">Borrar todo los Registros</button>
       </div>
+      <!--  </form> -->
+
       <h1 class=" fw-bold fs-2 p-3">Lista de Integrantes</h1>
       <table class="table table-striped table-bordered table-responsive  " id="table_admin">
         <thead class="">
@@ -242,6 +245,12 @@
         "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
       },
     });
+    $('#borrar_b').click(function() {
+      /*     $("#FormularioArticulo").modal('hide'); */
+      let registro = recuperarDatosFormulario();
+      borrarReg(registro);
+    });
+
     $('#ConfirmarModificar').click(function() {
       $("#FormularioArticulo").modal('hide');
       let registro = recuperarDatosFormulario();
@@ -324,6 +333,20 @@
       $.ajax({
         type: 'GET',
         url: 'datos.php?accion=borrar&id=' + id,
+        data: '',
+        success: function(msg) {
+          tabla1.ajax.reload();
+        },
+        error: function() {
+          alert("Hay un problema");
+        }
+      });
+    }
+
+    function borrarReg() {
+      $.ajax({
+        type: 'GET',
+        url: 'datos.php?accion=elimina',
         data: '',
         success: function(msg) {
           tabla1.ajax.reload();
