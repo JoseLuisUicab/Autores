@@ -30,8 +30,7 @@ switch ($_GET['accion']) {
   catch(PDOException $e){
       echo $sql . "<br>" . $e->getMessage();
       }
-  
-  $conn = null;
+      $conn = null;
       break;
 
   case 'consultar':

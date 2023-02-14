@@ -55,7 +55,7 @@
     <div class="text-center container-fluid">
       <!-- <form action="elimina.php"> -->
       <div class="d-flex justify-content-between align-items-end">
-        <button class="btn btn-secondary text-primary fw-bold fs-5" id="borrar_b">Borrar todo los Registros</button>
+        <button class="btn btn-secondary text-primary fw-bold fs-5" id="borrar_b">Limpiar Tabla</button>
       </div>
       <!--  </form> -->
 
@@ -350,6 +350,8 @@
         data: '',
         success: function(msg) {
           tabla1.ajax.reload();
+          /* header("Location:dashboard.php");
+           */
         },
         error: function() {
           alert("Hay un problema");
