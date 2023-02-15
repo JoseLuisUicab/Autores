@@ -19,6 +19,19 @@ switch ($_GET['accion']) {
     );
     echo json_encode($resultado);
     break;
+  
+  case 'elimina':
+    try {
+      $sql = $pdo->prepare("DELETE FROM integrantes");
+      $sql->execute();
+      echo "Record deleted successfully";
+      header("Location:dashboard.php");
+      }
+  catch(PDOException $e){
+      echo $sql . "<br>" . $e->getMessage();
+      }
+      $conn = null;
+      break;
 
   case 'consultar':
     $sql = $pdo->prepare("select id,nombre,apellido,correo,redes,puesto,descripcion from integrantes where id=:id");
