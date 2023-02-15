@@ -182,6 +182,7 @@
   document.addEventListener("DOMContentLoaded", function() {
 
     let tabla1 = $("#table_admin").DataTable({
+      responsive: true,
       ordering: false,
       "ajax": {
         url: "datos.php?accion=listar",
@@ -307,6 +308,7 @@
         $('#nombre').val('');
         $('#apellido').val('');
         $('#correo').val('');
+        .
         $('#redes').val('');
         $('#puesto').val('');
         $('#descripcion').val('');
@@ -350,8 +352,6 @@
         data: '',
         success: function(msg) {
           tabla1.ajax.reload();
-          /* header("Location:dashboard.php");
-           */
         },
         error: function() {
           alert("Hay un problema");
