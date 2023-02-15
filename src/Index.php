@@ -18,7 +18,12 @@
   <?php include "menu.php"?>
 
   <Section class="Inicio">
-    <h2>Nuestros Colaboradores</h2>
+    <div class="sombra">
+      <div class="sombra_t">
+        <h2>Nuestros Colaboradores</h2>
+      </div>
+    </div>
+
   </Section>
   <h2 class="teamle" id="teamleader">TEAM LEADERS</h2>
 

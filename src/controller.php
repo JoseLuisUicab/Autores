@@ -2,7 +2,7 @@
  /*Verificacionde boton */
  if(!empty($_POST["btniniciar"])){
         if (empty($_POST["usuario"]) and empty ($_POST["contrasenia"])) {
-            echo '<script language="javascript">alert("Porfavor de llenar los Datos");</script>';
+            echo '<script language="javascript">alert("Porfavor lkmde llenar los Datos");</script>';
         } else {
         $usuario=$_POST["usuario"];
         $contrasenia=$_POST["contrasenia"];
