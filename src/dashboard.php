@@ -93,7 +93,7 @@
               <span aria-hidden="true" class="bg-primary"></span>
             </button>
           </div>
-          <div class="modal-body" style="  border:1px solid blue;">
+          <div class="modal-body">
             <input type="hidden" id="ID">
             <!-- Nombre -->
             <div class="form-row">

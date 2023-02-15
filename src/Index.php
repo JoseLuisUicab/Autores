@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../Css/Destock.css">
+  <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../Css/Movil.css">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
@@ -43,9 +44,13 @@
       <!--------------------------------->
 
       <div class=" persona" style="background: #FFFFFF">
-      <p class="TITLE"><?php echo $row["nombre"];?>,<?php echo $row["apellido"];?></p><!-- nombre y apellido -->
+        <p class="TITLE"><?php echo $row["nombre"];?>,<?php echo $row["apellido"];?></p><!-- nombre y apellido -->
         <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
-        <h3><?php echo $row["puesto"];?></h3><!-- puesto -->
+
+        <h3 class="bg-primary text-white px-2 rounded-3 d-inline-block fs-5"><?php echo $row["puesto"];?></h3>
+        <!-- puesto -->
+
+
         <br>
         <p class="TITLE2"><?php echo $row["nombre"];?>,<?php echo $row["apellido"];?></p><!-- nombre y apellido -->
         <div class="aportaciones">
@@ -102,7 +107,8 @@
 
       <div class="persona">
         <figure><img src="../Imagenes/Billgates.jpg" alt=""></figure>
-        <h3><?php echo $row["puesto"];?></h3><!-- puesto -->
+        <h3 class="bg-secondary text-white px-2 rounded-3 d-inline-block fs-5"><?php echo $row["puesto"];?></h3>
+        <!-- puesto -->
         <br>
         <p><?php echo $row["nombre"];?>,<?php echo $row["apellido"];?></p><!-- nombre y apellido -->
         <div class="aportaciones">
@@ -110,7 +116,7 @@
           <p><?php echo $row["descripcion"];?></p><!-- descripciones -->
           <div class="iconos">
 
-          <a href="<?php echo $row["redes"];?>"><i class="fab fa-linkedin-in"></i> </a>
+            <a href="<?php echo $row["redes"];?>"><i class="fab fa-linkedin-in"></i> </a>
             <a href="<?php echo $row["redes"];?>"><i class="fa-brands fa-github"></i></i> </a>
             <a href="<?php echo $row["correo"];?>"> <i class="fas fa-envelope"></i></a>
           </div>
