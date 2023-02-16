@@ -34,7 +34,7 @@
     <article class="leader">
       <?php
     include "conexion_d.php";
-     //asemos la consulta de todos los usuarios de la tabla uausrios
+     /*consulta sql para dividir por puestos*/
      $todos_productos= " SELECT * FROM integrantes where (puesto = 'senior') ORDER BY id ASC";
      $resultado= mysqli_query($conectar, $todos_productos);
      while($row = mysqli_fetch_assoc($resultado))

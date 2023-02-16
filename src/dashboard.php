@@ -14,13 +14,16 @@
 </head>
 
 <body>
+
   <section class="content">
     <h1 class="fw-bold text-center bg-primary p-2" style="color:#DFBA49;">Administrador</h1>
     <div class="container-fluid my-4">
+      <!-- boton para salir del dashboard -->
       <div class="m-0 mb-2">
         <a class="btn btn-primary" href="login.php">Salir&nbsp;&nbsp;<i
             class="fa-solid fa-circle-xmark text-whit fs-5"></i></a>
       </div>
+      <!-- FIN boton para salir del dashboard -->
       <!-- caja para subir  -->
       <div class="row">
         <div class="col-lg-12">
@@ -32,6 +35,7 @@
               </div>
             </div>
             <div class="card-body">
+              <!-- FOrmulario para cargar el archivo excel emviando mediante post-->
               <form method="post" enctype="multipart/form-data" id="cargar_datos" onsubmit="Cargarexcel(event) ">
                 <div class="row">
                   <div class="col-lg-10">
@@ -60,7 +64,9 @@
       <!--  </form> -->
 
       <h1 class=" fw-bold fs-2 p-3">Lista de Integrantes</h1>
+      <!-- tabla para mostrar  el encabezado -->
       <table class="table table-striped table-bordered table-responsive" id="table_admin">
+
         <thead class="">
           <tr>
             <th scope="col">ID</th>
@@ -169,9 +175,9 @@
       <!--FIN MODAL MODIFICAR  -->
   </section>
 
-  <?php   require("Footer.php");  ?>
+  <?php   include("Footer.php");  ?>
 
-
+  <!-- script para hcer funcionar las librerias -->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="../DataTables/datatables.min.js"></script>
   <script src="../Scrip/Scrip.js"></script>
@@ -179,8 +185,9 @@
 
   <script src="https://kit.fontawesome.com/59df0bc859.js" crossorigin="anonymous"></script>
   <script>
+  /* evento nos permite conocer el momento en el que todos los elementos del DOM, es decir, los elementos HTML de un proyecto, están cargados */
   document.addEventListener("DOMContentLoaded", function() {
-
+    /*usando el pligin de jquery para mostrar los datos se envia en un JSON */
     let tabla1 = $("#table_admin").DataTable({
       responsive: true,
       ordering: false,
@@ -246,25 +253,26 @@
         "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
       },
     });
+
+    /* funcion para borrar todos los registros */
     $('#borrar_b').click(function() {
-      /*     $("#FormularioArticulo").modal('hide'); */
       let registro = recuperarDatosFormulario();
       borrarReg(registro);
     });
-
+    /* Funcion para borrar un solo registro */
     $('#ConfirmarModificar').click(function() {
       $("#FormularioArticulo").modal('hide');
       let registro = recuperarDatosFormulario();
       modificarRegistro(registro);
     });
-
+    /* evento al pulsar el bton dentro de la tabla y hacer la modificacion*/
     $('#table_admin tbody').on('click', 'button.botonmodificar', function() {
       $('#ConfirmarAgregar').hide();
       $('#ConfirmarModificar').show();
       let registro = tabla1.row($(this).parents('tr')).data();
       recuperarRegistro(registro.id);
     });
-
+    /* evento al pulsar el bton dentro de la tabla y hacer el cambio de foto*/
     $('#table_admin tbody').on('click', 'button.botonfoto', function() {
       /* $('#ConfirmarAgregar').hide(); */
       $('#ConfirmarModificar').show();
@@ -272,7 +280,7 @@
       recuperarRegistro(registro.id);
     });
 
-
+    /* evento al pulsar el bton dentro de la tabla y hacer la eliminacion*/
     $('#table_admin tbody').on('click', 'button.botonborrar', function() {
       Swal.fire({
         title: 'Borrar',
@@ -291,8 +299,10 @@
             showConfirmButton: false,
             timer: 1500
           })
+          /* borra el ID seleccionado */
           let registro = tabla1.row($(this).parents('tr')).data();
           borrarRegistro(registro.id)
+
         }
       })
 
@@ -314,7 +324,7 @@
         $('#descripcion').val('');
 
       } */
-
+    /*funcion para la recuperacion de los datos mediante un objeto almacenar los datos*/
     function recuperarDatosFormulario() {
       let registro = {
         id: $('#ID').val(),
@@ -330,7 +340,7 @@
     }
 
 
-    /* Borarr registro */
+    /* funcion para Borrar un solo registro */
     function borrarRegistro(id) {
       $.ajax({
         type: 'GET',
@@ -344,7 +354,7 @@
         }
       });
     }
-
+    /* Funcion para borrar todo el registro de la tabla */
     function borrarReg() {
       $.ajax({
         type: 'GET',
@@ -358,6 +368,7 @@
         }
       });
     }
+    /* funcion que consulta los datos en la BD para traerlos y poder modificarlos */
 
     function recuperarRegistro(id) {
       $.ajax({
@@ -379,6 +390,7 @@
         }
       });
     }
+    /* funcion para modificar los datos */
 
     function modificarRegistro(registro) {
       $.ajax({

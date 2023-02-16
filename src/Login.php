@@ -18,9 +18,11 @@
   <section class="Login">
     <figure><img src="../Imagenes/maia.png" alt=""></figure>
     <div>
+      <!-- FORMULARIO DEL LOGIN -->
       <form method="post" class="Formulario" action="">
         <p>Administrador</p><br>
-        <?php
+        <?php 
+        /* incluimos la conexion a la bd y el contoller en donde se valida el usuario para poder acceder al dashaboar */
            include ("conexion_d.php");
             include ("controller.php");
             ?>
